@@ -33,5 +33,6 @@
 
 5. hoadon (idsale,idxe,tonghoadon)
 + idsale nvarchar(255)
++ idkhachhang nvarchar(255)
 + idxe nvarchar(255)
 + tonghoadon int
