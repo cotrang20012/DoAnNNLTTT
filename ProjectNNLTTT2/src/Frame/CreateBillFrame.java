@@ -1,17 +1,33 @@
 package Frame;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.EventQueue;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableModel;
+
+import model.BillDetailModel;
+import model.BillModel;
+import model.CarModel;
+import model.CustomerModel;
+
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
 import javax.swing.JTable;
 import javax.swing.JScrollPane;
 import javax.swing.JButton;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class CreateBillFrame extends JFrame {
 
@@ -22,6 +38,11 @@ public class CreateBillFrame extends JFrame {
 	private JTextField textEmployee;
 	private JTable tableCar;
 	private JTable tableBill;
+	private CarModel carModel = new CarModel();
+	private BillModel billModel = new BillModel();
+	private BillDetailModel billDetailModel = new BillDetailModel();
+	private CustomerModel customerModel = new CustomerModel();
+	private int ITongHoaDon = 0;
 
 	/**
 	 * Launch the application.
@@ -44,11 +65,15 @@ public class CreateBillFrame extends JFrame {
 	 */
 	public CreateBillFrame() {
 		setTitle("TẠO HOÁ ĐƠN");
-		setBounds(100, 100, 830, 534);
+		setBounds(100, 100, 881, 534);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		
+		JLabel lblTongHoaDon = new JLabel("New label");
+		lblTongHoaDon.setBounds(668, 137, 187, 14);
+		contentPane.add(lblTongHoaDon);
 		
 		JLabel lblNewLabel = new JLabel("ID KHÁCH HÀNG:");
 		lblNewLabel.setBounds(32, 11, 93, 14);
@@ -92,32 +117,164 @@ public class CreateBillFrame extends JFrame {
 		
 		JComboBox comboIDCustomer = new JComboBox();
 		comboIDCustomer.setBounds(135, 7, 187, 22);
+		try {
+			ArrayList<CustomerModel> ListCustomer = CustomerModel.ViewCustomer();
+			int i = 0;
+			for(CustomerModel customer : ListCustomer) {
+				if(i == 0) {
+					textName.setText(customer.getTen());
+					textAddress.setText(customer.getDiachi());
+					textPhone.setText(customer.getSdt());
+				}
+				comboIDCustomer.addItem(customer.getId());
+				i = 1;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}	
+		comboIDCustomer.addItemListener(new ItemListener() {		
+			@Override
+			public void itemStateChanged(ItemEvent e) {
+				ArrayList<CustomerModel> ListCustomer = CustomerModel.ViewCustomer();
+				for(CustomerModel customer : ListCustomer) {
+					if(comboIDCustomer.getSelectedItem().toString().equals(String.valueOf(customer.getId()))) {
+						textName.setText(customer.getTen());
+						textAddress.setText(customer.getDiachi());
+						textPhone.setText(customer.getSdt());
+						break;
+					}
+				}
+			}
+		});
 		contentPane.add(comboIDCustomer);
-		
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(32, 136, 626, 348);
 		contentPane.add(scrollPane);
 		
-		tableCar = new JTable();
+		tableCar = new JTable(){
+	         public boolean editCellAt(int row, int column, java.util.EventObject e) {
+	             return false;
+	          }
+	       };
+		DefaultTableModel Carmodel = new DefaultTableModel();
+		Carmodel.addColumn("ID");
+		Carmodel.addColumn("Model");
+		Carmodel.addColumn("Màu Xe");
+		Carmodel.addColumn("Thương Hiệu");
+		Carmodel.addColumn("Loại");
+		Carmodel.addColumn("Phân Khối");
+		Carmodel.addColumn("Xuất Xứ");
+		Carmodel.addColumn("Giá Xe");
+		tableCar.setModel(Carmodel);
+		SetDataForTableCar();
 		scrollPane.setViewportView(tableCar);
 		
 		JButton btnExit = new JButton("THOÁT");
-		btnExit.setBounds(678, 433, 126, 51);
+		btnExit.setBounds(678, 433, 177, 51);
 		contentPane.add(btnExit);
 		
 		JScrollPane scrollPane_1 = new JScrollPane();
-		scrollPane_1.setBounds(332, 10, 472, 119);
+		scrollPane_1.setBounds(332, 10, 523, 119);
 		contentPane.add(scrollPane_1);
 		
-		tableBill = new JTable();
+		tableBill = new JTable(){
+	         public boolean editCellAt(int row, int column, java.util.EventObject e) {
+	             return false;
+	          }
+	       };
+		
+		DefaultTableModel Billmodel = new DefaultTableModel();
+		Billmodel.addColumn("ID");
+		Billmodel.addColumn("Model");
+		Billmodel.addColumn("Màu Xe");
+		Billmodel.addColumn("Thương Hiệu");
+		Billmodel.addColumn("Loại");
+		Billmodel.addColumn("Phân Khối");
+		Billmodel.addColumn("Xuất Xứ");
+		Billmodel.addColumn("Giá Xe");
+		tableBill.setModel(Billmodel);
 		scrollPane_1.setViewportView(tableBill);
 		
+		tableCar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				int row= tableCar.rowAtPoint(e.getPoint());
+				String[] item = { tableCar.getValueAt(row,0).toString(),tableCar.getValueAt(row,1).toString(), tableCar.getValueAt(row,2).toString(), tableCar.getValueAt(row,3).toString(), tableCar.getValueAt(row,4).toString(),tableCar.getValueAt(row,5).toString(),tableCar.getValueAt(row,6).toString(),tableCar.getValueAt(row,7).toString()};
+				DefaultTableModel modelBill = (DefaultTableModel) tableBill.getModel();
+				modelBill.addRow(item);
+				modelBill.fireTableDataChanged();
+				
+				DefaultTableModel modelCar = (DefaultTableModel) tableCar.getModel();
+				modelCar.removeRow(row);
+				modelCar.fireTableDataChanged();
+				
+				TinhTongHoaDon(lblTongHoaDon);
+			}
+		});
+		
+		tableBill.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				int row= tableBill.rowAtPoint(e.getPoint());
+				String[] item = { tableBill.getValueAt(row,0).toString(),tableBill.getValueAt(row,1).toString(), tableBill.getValueAt(row,2).toString(), tableBill.getValueAt(row,3).toString(), tableBill.getValueAt(row,4).toString(),tableBill.getValueAt(row,5).toString(),tableBill.getValueAt(row,6).toString(),tableBill.getValueAt(row,7).toString() };
+				DefaultTableModel modelCar = (DefaultTableModel) tableCar.getModel();
+				modelCar.addRow(item);
+				modelCar.fireTableDataChanged();
+				
+				DefaultTableModel modelBill = (DefaultTableModel) tableBill.getModel();
+				modelBill.removeRow(row);
+				modelBill.fireTableDataChanged();
+				
+				TinhTongHoaDon(lblTongHoaDon);
+			}
+		});
+		
+		
 		JButton btnCreateBill = new JButton("TẠO HOÁ ĐƠN");
-		btnCreateBill.setBounds(678, 343, 126, 51);
+		btnCreateBill.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if(tableBill.getModel().getRowCount()==0) {
+					
+				}
+				else {
+					int idBill = BillModel.insertBill(2,Integer.parseInt(comboIDCustomer.getSelectedItem().toString()), ITongHoaDon);
+					for(int i =0 ; i < tableBill.getModel().getRowCount();i++) {
+						BillDetailModel.insertBillDetail(idBill, Integer.parseInt(tableBill.getValueAt(i, 0).toString()), Integer.parseInt(tableBill.getValueAt(i, 7).toString()));
+					}
+					JOptionPane optionPane = new JOptionPane();
+					optionPane.showMessageDialog(null, "Thêm hoá đơn thành công", "InfoBox: " + "QUẢN LÝ ĐƠN HÀNG",
+							JOptionPane.INFORMATION_MESSAGE);
+					dispose();
+				}
+			}
+		});
+		btnCreateBill.setBounds(678, 343, 177, 51);
 		contentPane.add(btnCreateBill);
 		
-		JButton btnDeleteRow = new JButton("XOÁ");
-		btnDeleteRow.setBounds(678, 135, 126, 51);
-		contentPane.add(btnDeleteRow);
+		TinhTongHoaDon(lblTongHoaDon);
+	}
+	
+	private void SetDataForTableCar() {
+		ArrayList<CarModel> listCar = CarModel.viewCarNotSales();
+		for(CarModel car : listCar) {
+			String[] item = { String.valueOf(car.getId()),car.getModelXe(),car.getMauXe(), car.getThuongHieu(), car.getLoai(), String.valueOf(car.getPhanKhoi()),car.getXuatXu(),String.valueOf(car.getGiaXe()) };
+			DefaultTableModel model = (DefaultTableModel) tableCar.getModel();
+			model.addRow(item);
+		}	
+	}
+	
+	private void TinhTongHoaDon(JLabel lblTongHoaDon) {
+		DefaultTableModel model = (DefaultTableModel) tableBill.getModel();
+		int TongHoaDon = 0;
+		if(model.getRowCount()!=0) {
+			for(int i = 0; i < model.getRowCount();i++) {
+				int GiaTri =   Integer.parseInt((model.getValueAt(i, 7).toString()));
+				TongHoaDon += GiaTri;
+			}
+		}
+		TongHoaDon = TongHoaDon + TongHoaDon*10/100;
+		ITongHoaDon = TongHoaDon;
+		lblTongHoaDon.setText("Tổng: "+String.valueOf(TongHoaDon));		
 	}
 }
