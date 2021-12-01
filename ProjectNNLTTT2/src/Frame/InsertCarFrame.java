@@ -20,6 +20,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 import model.CarModel;
+import javax.swing.JComboBox;
 
 public class InsertCarFrame extends JFrame {
 
@@ -28,9 +29,7 @@ public class InsertCarFrame extends JFrame {
 	private JTextField txt_model;
 	private JTextField txt_mauxe;
 	private JTextField txt_thuonghieu;
-	private JTextField txt_loai;
 	private JTextField txt_phankhoi;
-	private JTextField txt_trangthai;
 	private JTextField txt_gia;
 	/**
 	 * Launch the application.
@@ -51,17 +50,15 @@ public class InsertCarFrame extends JFrame {
 	//processing methods
 	public void clearText() {
 		txt_gia.setText("");
-		txt_loai.setText("");
 		txt_mauxe.setText("");
 		txt_xuatxu.setText("");
 		txt_model.setText("");
 		txt_phankhoi.setText("");
 		txt_thuonghieu.setText("");
-		txt_trangthai.setText("");
 	}
 	
 	public boolean existEmptyField() {
-		if(txt_gia.getText()==""||txt_loai.getText()==""||txt_mauxe.getText()==""||txt_model.getText()==""||txt_phankhoi.getText()==""||txt_thuonghieu.getText()==""||txt_trangthai.getText()=="") {
+		if(txt_gia.getText()==""||txt_mauxe.getText()==""||txt_model.getText()==""||txt_phankhoi.getText()==""||txt_thuonghieu.getText()=="") {
 			return true;
 		} else
 			return false;
@@ -103,12 +100,8 @@ public class InsertCarFrame extends JFrame {
 		lbl_phankhoi.setBounds(10, 195, 70, 14);
 		contentPane.add(lbl_phankhoi);
 		
-		JLabel lbl_trangthai = new JLabel("Tr\u1EA1ng Th\u00E1i:");
-		lbl_trangthai.setBounds(10, 225, 70, 14);
-		contentPane.add(lbl_trangthai);
-		
 		JLabel lbl_gia = new JLabel("Gi\u00E1 Xe:");
-		lbl_gia.setBounds(10, 255, 70, 14);
+		lbl_gia.setBounds(10, 225, 70, 14);
 		contentPane.add(lbl_gia);
 		
 		txt_xuatxu = new JTextField();
@@ -131,23 +124,13 @@ public class InsertCarFrame extends JFrame {
 		contentPane.add(txt_thuonghieu);
 		txt_thuonghieu.setColumns(10);
 		
-		txt_loai = new JTextField();
-		txt_loai.setBounds(90, 162, 170, 20);
-		contentPane.add(txt_loai);
-		txt_loai.setColumns(10);
-		
 		txt_phankhoi = new JTextField();
 		txt_phankhoi.setBounds(90, 192, 170, 20);
 		contentPane.add(txt_phankhoi);
 		txt_phankhoi.setColumns(10);
 		
-		txt_trangthai = new JTextField();
-		txt_trangthai.setBounds(90, 222, 170, 20);
-		contentPane.add(txt_trangthai);
-		txt_trangthai.setColumns(10);
-		
 		txt_gia = new JTextField();
-		txt_gia.setBounds(90, 252, 170, 20);
+		txt_gia.setBounds(90, 222, 170, 20);
 		contentPane.add(txt_gia);
 		txt_gia.setColumns(10);
 		
@@ -161,6 +144,12 @@ public class InsertCarFrame extends JFrame {
 		btnClear.setBounds(175, 283, 80, 42);
 		contentPane.add(btnClear);
 		
+		String[] loaiXe = {"XE 2 BANH", "XE 4 BANH"};
+		JComboBox<String> cb_loai = new JComboBox(loaiXe);
+		cb_loai.setBounds(90, 161, 170, 22);
+		contentPane.add(cb_loai);
+		cb_loai.setSelectedIndex(0);
+		
 		
 		
 		//Add events for buttons
@@ -171,7 +160,7 @@ public class InsertCarFrame extends JFrame {
 					JOptionPane.showMessageDialog(contentPane, "Vui lòng nhập đủ thông tin!");	
 				}
 				else{
-				    CarModel car = new CarModel(-1,txt_model.getText(),txt_mauxe.getText(),txt_thuonghieu.getText(),txt_loai.getText(),Integer.parseInt(txt_phankhoi.getText()),txt_xuatxu.getText(),txt_trangthai.getText(),Integer.parseInt(txt_gia.getText()));
+				    CarModel car = new CarModel(-1,txt_model.getText(),txt_mauxe.getText(),txt_thuonghieu.getText(),cb_loai.getSelectedItem().toString(),Integer.parseInt(txt_phankhoi.getText()),txt_xuatxu.getText(),"CHUA BAN",Integer.parseInt(txt_gia.getText()));
 				    CarModel.insertCar(car);
 				    JOptionPane.showMessageDialog(contentPane, "Nhập thành công!");
 				    clearText();
