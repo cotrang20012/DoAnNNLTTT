@@ -101,10 +101,10 @@ public class CarModel {
 			pStatement.setString(2, car.getMauXe());
 			pStatement.setString(3, car.getThuongHieu());
 			pStatement.setString(4, car.getLoai());
-			pStatement.setString(5, Integer.toString(car.getPhanKhoi()));
+			pStatement.setInt(5, car.getPhanKhoi());
 			pStatement.setString(6, car.getXuatXu());
 			pStatement.setString(7, car.getTrangThai());
-			pStatement.setString(8, Integer.toString(car.getGiaXe()));
+			pStatement.setInt(8, car.getGiaXe());
 						
 			pStatement.execute();
 
@@ -121,7 +121,7 @@ public class CarModel {
 	    PreparedStatement pStatement = null;
 	    try {
 	    	pStatement =conn.prepareStatement(deleteQuery);
-	    	pStatement.setString(1, Integer.toString(car.getId()));
+	    	pStatement.setInt(1, car.getId());
 	    	
 	    	pStatement.execute();
 	    } catch (SQLException e) {
@@ -141,11 +141,11 @@ public class CarModel {
 			pStatement.setString(2, car.getMauXe());
 			pStatement.setString(3, car.getThuongHieu());
 			pStatement.setString(4, car.getLoai());
-			pStatement.setString(5, Integer.toString(car.getPhanKhoi()));
+			pStatement.setInt(5, car.getPhanKhoi());
 			pStatement.setString(6, car.getXuatXu());
 			pStatement.setString(7, car.getTrangThai());
-			pStatement.setString(8, Integer.toString(car.getGiaXe()));
-			pStatement.setString(9, Integer.toString(car.getId()));
+			pStatement.setInt(8, car.getGiaXe());
+			pStatement.setInt(9, car.getId());
 			
 			pStatement.execute();
 	    } catch (SQLException e) {
