@@ -1,8 +1,9 @@
 package model;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
-
+import java.util.ArrayList;
 
 import database.MyDB;
 
@@ -150,6 +151,35 @@ public class CarModel {
 			pStatement.execute();
 	    } catch (SQLException e) {
 	    	e.printStackTrace();
+		}
+	}
+	
+	public static ArrayList<CarModel> viewCarNotSales() {
+		Connection conn = MyDB.getConnection();
+		
+		String viewQuery = "SELECT * FROM xe WHERE trangthai = ?; ";
+		try {
+			PreparedStatement pStatement = conn.prepareStatement(viewQuery);
+			pStatement.setString(1, "CHƯA BÁN");
+			ResultSet resultSet = pStatement.executeQuery();
+			ArrayList<CarModel> ListCar = new ArrayList<CarModel>();
+			while(resultSet.next()) {
+				CarModel newCar = new CarModel();
+				newCar.setId(resultSet.getInt(1));
+				newCar.setModelXe(resultSet.getString(2));
+				newCar.setMauXe(resultSet.getString(3));
+				newCar.setThuongHieu(resultSet.getString(4));
+				newCar.setPhanKhoi(resultSet.getInt(6));
+				newCar.setLoai(resultSet.getString(5));
+				newCar.setXuatXu(resultSet.getString(7));
+				newCar.setGiaXe(resultSet.getInt(9));
+				ListCar.add(newCar);
+			}
+			MyDB.closeConnection(conn);
+			return ListCar;
+		} catch (SQLException e) {		
+			e.printStackTrace();
+			return null;
 		}
 	}
 }

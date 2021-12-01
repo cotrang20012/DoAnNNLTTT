@@ -2,7 +2,9 @@ package model;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import database.MyDB;
 
@@ -110,5 +112,30 @@ public class CustomerModel {
 		}
 	    
 	   MyDB.closeConnection(conn);
+	}
+	
+	public static ArrayList<CustomerModel> ViewCustomer() {
+		Connection conn = MyDB.getConnection();
+
+		String viewQuery = "SELECT * FROM khachhang;";
+		try {
+			PreparedStatement pStatement = conn.prepareStatement(viewQuery);
+			ResultSet resultSet = pStatement.executeQuery();
+			ArrayList<CustomerModel> ListCustomer = new ArrayList<CustomerModel>();
+			while (resultSet.next()) {
+				CustomerModel newCustomer = new CustomerModel();
+				newCustomer.setCustID(resultSet.getInt(1));
+				newCustomer.setCmnd(resultSet.getString(2));
+				newCustomer.setCustName(resultSet.getString(3));
+				newCustomer.setCustAddr(resultSet.getString(4));
+				newCustomer.setCustPhone(resultSet.getString(5));
+				ListCustomer.add(newCustomer);
+			}
+			MyDB.closeConnection(conn);
+			return ListCustomer;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 }

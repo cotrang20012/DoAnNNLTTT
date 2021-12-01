@@ -122,11 +122,11 @@ public class CreateBillFrame extends JFrame {
 			int i = 0;
 			for(CustomerModel customer : ListCustomer) {
 				if(i == 0) {
-					textName.setText(customer.getTen());
-					textAddress.setText(customer.getDiachi());
-					textPhone.setText(customer.getSdt());
+					textName.setText(customer.getCustName());
+					textAddress.setText(customer.getCustAddr());
+					textPhone.setText(customer.getCustPhone());
 				}
-				comboIDCustomer.addItem(customer.getId());
+				comboIDCustomer.addItem(customer.getCustID());
 				i = 1;
 			}
 		} catch (Exception e) {
@@ -137,10 +137,10 @@ public class CreateBillFrame extends JFrame {
 			public void itemStateChanged(ItemEvent e) {
 				ArrayList<CustomerModel> ListCustomer = CustomerModel.ViewCustomer();
 				for(CustomerModel customer : ListCustomer) {
-					if(comboIDCustomer.getSelectedItem().toString().equals(String.valueOf(customer.getId()))) {
-						textName.setText(customer.getTen());
-						textAddress.setText(customer.getDiachi());
-						textPhone.setText(customer.getSdt());
+					if(comboIDCustomer.getSelectedItem().toString().equals(String.valueOf(customer.getCustID()))) {
+						textName.setText(customer.getCustName());
+						textAddress.setText(customer.getCustAddr());
+						textPhone.setText(customer.getCustPhone());
 						break;
 					}
 				}
