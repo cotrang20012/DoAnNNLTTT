@@ -58,7 +58,7 @@ public class InsertCarFrame extends JFrame {
 	}
 	
 	public boolean existEmptyField() {
-		if(txt_gia.getText()==""||txt_mauxe.getText()==""||txt_model.getText()==""||txt_phankhoi.getText()==""||txt_thuonghieu.getText()=="") {
+		if(txt_gia.getText()==""||txt_mauxe.getText()==""||txt_model.getText()==""||txt_phankhoi.getText()==""||txt_thuonghieu.getText()==""||txt_xuatxu.getText()=="") {
 			return true;
 		} else
 			return false;
