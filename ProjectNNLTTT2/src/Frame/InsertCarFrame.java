@@ -19,7 +19,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.awt.event.ActionEvent;
-import database.*;
+import model.CarModel;
 
 public class InsertCarFrame extends JFrame {
 
@@ -32,7 +32,6 @@ public class InsertCarFrame extends JFrame {
 	private JTextField txt_phankhoi;
 	private JTextField txt_trangthai;
 	private JTextField txt_gia;
-
 	/**
 	 * Launch the application.
 	 */
@@ -49,6 +48,7 @@ public class InsertCarFrame extends JFrame {
 		});
 	}
 	
+	//processing methods
 	public void clearText() {
 		txt_gia.setText("");
 		txt_loai.setText("");
@@ -58,6 +58,13 @@ public class InsertCarFrame extends JFrame {
 		txt_phankhoi.setText("");
 		txt_thuonghieu.setText("");
 		txt_trangthai.setText("");
+	}
+	
+	public boolean existEmptyField() {
+		if(txt_gia.getText()==""||txt_loai.getText()==""||txt_mauxe.getText()==""||txt_model.getText()==""||txt_phankhoi.getText()==""||txt_thuonghieu.getText()==""||txt_trangthai.getText()=="") {
+			return true;
+		} else
+			return false;
 	}
 	/**
 	 * Create the frame.
@@ -160,34 +167,14 @@ public class InsertCarFrame extends JFrame {
 		btnAdd.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//Check empty fields
-				if(txt_gia.getText()==""||txt_loai.getText()==""||txt_mauxe.getText()==""||txt_model.getText()==""||txt_phankhoi.getText()==""||txt_thuonghieu.getText()==""||txt_trangthai.getText()==""){
+				if(existEmptyField()==true){
 					JOptionPane.showMessageDialog(contentPane, "Vui lòng nhập đủ thông tin!");	
 				}
 				else{
-					Connection conn = MyDB.getConnection();
-					String insertQuery = "INSERT INTO xe (model, mauxe, thuonghieu, loai, phankhoi, xuatxu, trangthai, gia) VALUES (?,?,?,?,?,?,?,?);";
-				    PreparedStatement pStatement = null;
-				    try {
-						pStatement = conn.prepareStatement(insertQuery);
-						pStatement.setString(1, txt_model.getText());
-						pStatement.setString(2, txt_mauxe.getText());
-						pStatement.setString(3, txt_thuonghieu.getText());
-						pStatement.setString(4, txt_loai.getText());
-						pStatement.setString(5, txt_phankhoi.getText());
-						pStatement.setString(6, txt_xuatxu.getText());
-						pStatement.setString(7, txt_trangthai.getText());
-						pStatement.setString(8, txt_gia.getText());
-						
-						
-						pStatement.execute();
-						
-						JOptionPane.showMessageDialog(contentPane, "Nhập thành công!");
-						clearText();
-					} catch (SQLException e1) {
-						e1.printStackTrace();
-					}
-				    
-				   MyDB.closeConnection(conn);
+				    CarModel car = new CarModel(-1,txt_model.getText(),txt_mauxe.getText(),txt_thuonghieu.getText(),txt_loai.getText(),Integer.parseInt(txt_phankhoi.getText()),txt_xuatxu.getText(),txt_trangthai.getText(),Integer.parseInt(txt_gia.getText()));
+				    CarModel.insertCar(car);
+				    JOptionPane.showMessageDialog(contentPane, "Nhập thành công!");
+				    clearText();
 				}
 			}
 		});
