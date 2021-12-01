@@ -17,25 +17,6 @@ public class ManagerFrom extends JFrame {
 	private JTable tableEmployee;
 	private JTable tableAccount;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					ManagerFrom frame = new ManagerFrom();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 */
 	public ManagerFrom() {
 		setTitle("QUẢN LÝ");
 		setBounds(100, 100, 844, 471);
@@ -45,7 +26,7 @@ public class ManagerFrom extends JFrame {
 		contentPane.setLayout(null);
 		
 		JButton btnAddEmployee = new JButton("THÊM NHÂN VIÊN");
-		btnAddEmployee.setBounds(10, 11, 126, 51);
+		btnAddEmployee.setBounds(10, 11, 144, 51);
 		contentPane.add(btnAddEmployee);
 		
 		JScrollPane scrollPane = new JScrollPane();
@@ -63,15 +44,15 @@ public class ManagerFrom extends JFrame {
 		scrollPane_1.setViewportView(tableAccount);
 		
 		JButton btnUpdateEmployee = new JButton("SỬA THÔNG TIN");
-		btnUpdateEmployee.setBounds(146, 11, 126, 51);
+		btnUpdateEmployee.setBounds(164, 11, 126, 51);
 		contentPane.add(btnUpdateEmployee);
 		
 		JButton btnDeleteEmployee = new JButton("XOÁ NHÂN VIÊN");
-		btnDeleteEmployee.setBounds(282, 11, 126, 51);
+		btnDeleteEmployee.setBounds(300, 11, 126, 51);
 		contentPane.add(btnDeleteEmployee);
 		
 		JButton btnUpdateAccount = new JButton("SỬA TÀI KHOẢN");
-		btnUpdateAccount.setBounds(418, 11, 126, 51);
+		btnUpdateAccount.setBounds(436, 11, 126, 51);
 		contentPane.add(btnUpdateAccount);
 	}
 }

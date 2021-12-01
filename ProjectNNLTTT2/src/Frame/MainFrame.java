@@ -15,30 +15,10 @@ public class MainFrame extends JFrame {
 
 	private JPanel contentPane;
 	private JTable tableCar;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					MainFrame frame = new MainFrame();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 */
 	public MainFrame() {
 		setTitle("QUẢN LÝ CỬA HÀNG");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 648, 472);
+		setBounds(100, 100, 680, 472);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -56,27 +36,27 @@ public class MainFrame extends JFrame {
 		contentPane.add(btnManager);
 		
 		JButton btnCar = new JButton("DANH SÁCH XE");
-		btnCar.setBounds(135, 11, 115, 47);
+		btnCar.setBounds(135, 11, 137, 47);
 		contentPane.add(btnCar);
 		
 		JButton btnKhchHng = new JButton("KHÁCH HÀNG");
-		btnKhchHng.setBounds(260, 11, 115, 47);
+		btnKhchHng.setBounds(282, 11, 115, 47);
 		contentPane.add(btnKhchHng);
 		
 		JButton btnDanhSchHo = new JButton("HOÁ ĐƠN");
-		btnDanhSchHo.setBounds(385, 11, 115, 47);
+		btnDanhSchHo.setBounds(407, 11, 115, 47);
 		contentPane.add(btnDanhSchHo);
 		
 		JButton btnNewButton_3_1 = new JButton("TẠO HOÁ ĐƠN");
-		btnNewButton_3_1.setBounds(507, 69, 115, 47);
+		btnNewButton_3_1.setBounds(507, 69, 137, 47);
 		contentPane.add(btnNewButton_3_1);
 		
 		JButton btnNewButton_3_2 = new JButton("ĐỔI MẬT KHẨU");
-		btnNewButton_3_2.setBounds(507, 127, 115, 47);
+		btnNewButton_3_2.setBounds(507, 127, 137, 47);
 		contentPane.add(btnNewButton_3_2);
 		
 		JButton btnNewButton_3_3 = new JButton("ĐỔI THÔNG TIN");
-		btnNewButton_3_3.setBounds(507, 185, 115, 47);
+		btnNewButton_3_3.setBounds(507, 185, 137, 47);
 		contentPane.add(btnNewButton_3_3);
 		
 		JButton btnExti = new JButton("THOÁT");

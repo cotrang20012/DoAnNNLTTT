@@ -15,7 +15,7 @@ public final class MyDB {
 		Connection conn = null;
 		
 		try {
-		    conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/testdb","root","123456");
+		    conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/projectnnlttt","root","1234");
 		    
 		  /*  String prepareSQL = "SELECT * FROM testdb.laptop";
 		    PreparedStatement pStatement = conn.prepareStatement(prepareSQL);
