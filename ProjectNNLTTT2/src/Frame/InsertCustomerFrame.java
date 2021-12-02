@@ -62,7 +62,7 @@ public class InsertCustomerFrame extends JFrame {
 	 */
 	public InsertCustomerFrame() {
 		setTitle("TH\u00D4NG TIN KH\u00C1CH H\u00C0NG");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 319, 188);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));

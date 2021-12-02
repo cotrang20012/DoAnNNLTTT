@@ -182,5 +182,33 @@ public class CarModel {
 			return null;
 		}
 	}
+	
+	public static ArrayList<CarModel> viewAllCar() {
+        try {
+            
+            Connection con = MyDB.getConnection();
+            String sqlString = "SELECT * FROM xe";
+            PreparedStatement stmt = con.prepareStatement(sqlString);
+            ArrayList<CarModel> lst = new ArrayList<CarModel>();
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+            	CarModel car = new CarModel();
+				car.setId(rs.getInt("id"));
+				car.setModelXe(rs.getString("model"));
+				car.setMauXe(rs.getString("mauxe"));
+				car.setLoai(rs.getString("loai"));
+				car.setPhanKhoi(rs.getInt("phankhoi"));
+				car.setXuatXu(rs.getString("xuatxu"));
+				car.setTrangThai(rs.getString("trangthai"));
+				car.setGiaXe(rs.getInt("gia"));
+				car.setThuongHieu(rs.getString("thuonghieu"));
+                lst.add(car);
+            }
+            return lst;
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return null;
+	}
 }
 
