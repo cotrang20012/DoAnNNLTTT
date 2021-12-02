@@ -45,6 +45,20 @@ public class BillDetailModel {
 			e.printStackTrace();
 		}
 	    MyDB.closeConnection(conn);
-
-	}	
+	}
+	
+	public static void deleteBillDetailAfterDeleteBill(int idbill) {
+		Connection conn = MyDB.getConnection();
+		String deleteQuery = "DELETE FROM billdetail WHERE idbill = ?";
+	    PreparedStatement pStatement = null;
+	    try {
+	    	pStatement =conn.prepareStatement(deleteQuery);
+	    	pStatement.setInt(1, idbill);
+	    	
+	    	pStatement.executeUpdate();
+	    } catch (SQLException e) {
+			e.printStackTrace();
+		}
+	   MyDB.closeConnection(conn);
+	}
 }

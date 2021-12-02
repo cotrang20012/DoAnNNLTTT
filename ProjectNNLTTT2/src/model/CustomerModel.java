@@ -74,6 +74,7 @@ public class CustomerModel {
 			pStatement.execute();
 
 		} catch (SQLException e) {
+			MyDB.closeConnection(conn);
 			e.printStackTrace();
 		}
 	    
@@ -94,8 +95,10 @@ public class CustomerModel {
 			
 			pStatement.execute();
 	    } catch (SQLException e) {
+	    	MyDB.closeConnection(conn);
 	    	e.printStackTrace();
 		}
+	    MyDB.closeConnection(conn);
 	}
 	
 	public static void deleteCust(CustomerModel cust) {
@@ -108,9 +111,9 @@ public class CustomerModel {
 	    	
 	    	pStatement.execute();
 	    } catch (SQLException e) {
+	    	MyDB.closeConnection(conn);
 			e.printStackTrace();
-		}
-	    
+		}	    
 	   MyDB.closeConnection(conn);
 	}
 	
@@ -135,6 +138,7 @@ public class CustomerModel {
 			return ListCustomer;
 		} catch (SQLException e) {
 			e.printStackTrace();
+			MyDB.closeConnection(conn);
 			return null;
 		}
 	}

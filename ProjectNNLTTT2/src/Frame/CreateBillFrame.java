@@ -241,6 +241,7 @@ public class CreateBillFrame extends JFrame {
 					int idBill = BillModel.insertBill(2,Integer.parseInt(comboIDCustomer.getSelectedItem().toString()), ITongHoaDon);
 					for(int i =0 ; i < tableBill.getModel().getRowCount();i++) {
 						BillDetailModel.insertBillDetail(idBill, Integer.parseInt(tableBill.getValueAt(i, 0).toString()), Integer.parseInt(tableBill.getValueAt(i, 7).toString()));
+						CarModel.updateCarStatus(Integer.parseInt(tableBill.getValueAt(i, 0).toString()));
 					}
 					JOptionPane optionPane = new JOptionPane();
 					optionPane.showMessageDialog(null, "Thêm hoá đơn thành công", "InfoBox: " + "QUẢN LÝ ĐƠN HÀNG",

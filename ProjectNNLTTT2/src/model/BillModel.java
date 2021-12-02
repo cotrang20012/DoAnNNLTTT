@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 import com.mysql.cj.protocol.Resultset;
 
@@ -71,5 +72,43 @@ public class BillModel {
 		}
 	    MyDB.closeConnection(conn);
 	    return id;
+	}
+	public static ArrayList<BillModel> viewBillForBillFrame(){
+		Connection conn = MyDB.getConnection();
+
+		String viewQuery = "SELECT * FROM bill;";
+		try {
+			PreparedStatement pStatement = conn.prepareStatement(viewQuery);
+			ResultSet resultSet = pStatement.executeQuery();
+			ArrayList<BillModel> ListBill = new ArrayList<BillModel>();
+			while (resultSet.next()) {
+				BillModel newBill = new BillModel();
+				newBill.setIdbill(resultSet.getInt(1));
+				newBill.setIdsale(resultSet.getInt(2));
+				newBill.setIdkhachhang(resultSet.getInt(3));
+				newBill.setTonghoadon(resultSet.getInt(4));
+				ListBill.add(newBill);
+			}
+			MyDB.closeConnection(conn);
+			return ListBill;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			MyDB.closeConnection(conn);
+			return null;
+		}
+	}
+	public static void DeleteBill(int idBill) {
+		Connection conn = MyDB.getConnection();
+		String deleteQuery = "DELETE FROM bill WHERE idbill = ?";
+	    PreparedStatement pStatement = null;
+	    try {
+	    	pStatement =conn.prepareStatement(deleteQuery);
+	    	pStatement.setInt(1, idBill);
+	    	
+	    	pStatement.executeUpdate();
+	    } catch (SQLException e) {
+			e.printStackTrace();
+		}
+	   MyDB.closeConnection(conn);
 	}
 }

@@ -128,7 +128,6 @@ public class CarModel {
 	    } catch (SQLException e) {
 			e.printStackTrace();
 		}
-	    
 	   MyDB.closeConnection(conn);
 	}
 	
@@ -152,6 +151,7 @@ public class CarModel {
 	    } catch (SQLException e) {
 	    	e.printStackTrace();
 		}
+	    MyDB.closeConnection(conn);
 	}
 	
 	public static ArrayList<CarModel> viewCarNotSales() {
@@ -184,8 +184,7 @@ public class CarModel {
 	}
 	
 	public static ArrayList<CarModel> viewAllCar() {
-        try {
-            
+        try {           
             Connection con = MyDB.getConnection();
             String sqlString = "SELECT * FROM xe";
             PreparedStatement stmt = con.prepareStatement(sqlString);
@@ -204,11 +203,73 @@ public class CarModel {
 				car.setThuongHieu(rs.getString("thuonghieu"));
                 lst.add(car);
             }
+            MyDB.closeConnection(con);
             return lst;
         } catch (Exception e) {
             System.out.println(e);
         }
         return null;
 	}
+	
+	public static void updateCarStatus(int carID) {
+		Connection conn = MyDB.getConnection();
+		String updateQuery = "UPDATE xe SET trangthai= ? WHERE id= ?";
+	    PreparedStatement pStatement = null;
+	    try {
+	    	pStatement =conn.prepareStatement(updateQuery);
+	    	pStatement.setString(1, "ĐÃ BÁN");
+			pStatement.setInt(2, carID);
+				
+			pStatement.executeUpdate();
+	    } catch (SQLException e) {
+	    	e.printStackTrace();
+		}
+	    MyDB.closeConnection(conn);
+	}
+	public static void updateCarStatusAfterDeleteBill(int carID) {
+		Connection conn = MyDB.getConnection();
+		String updateQuery = "UPDATE xe SET trangthai= ? WHERE id= ?";
+	    PreparedStatement pStatement = null;
+	    try {
+	    	pStatement =conn.prepareStatement(updateQuery);
+	    	pStatement.setString(1, "CHƯA BÁN");
+			pStatement.setInt(2, carID);
+				
+			pStatement.executeUpdate();
+	    } catch (SQLException e) {
+	    	e.printStackTrace();
+		}
+	    MyDB.closeConnection(conn);
+	}
+	
+	public static ArrayList<CarModel> viewCarWithBill(int idBill) {
+		Connection conn = MyDB.getConnection();
+		
+		String viewQuery = "SELECT id, model, mauxe, thuonghieu, loai, phankhoi, xuatxu, xe.gia FROM xe INNER JOIN billdetail ON xe.id = billdetail.idxe INNER JOIN bill on billdetail.idbill = bill.idbill WHERE bill.idbill = ?; ";
+		try {
+			PreparedStatement pStatement = conn.prepareStatement(viewQuery);
+			pStatement.setInt(1, idBill);
+			ResultSet resultSet = pStatement.executeQuery();
+			ArrayList<CarModel> ListCar = new ArrayList<CarModel>();
+			while(resultSet.next()) {
+				CarModel newCar = new CarModel();
+				newCar.setId(resultSet.getInt(1));
+				newCar.setModelXe(resultSet.getString(2));
+				newCar.setMauXe(resultSet.getString(3));
+				newCar.setThuongHieu(resultSet.getString(4));
+				newCar.setPhanKhoi(resultSet.getInt(6));
+				newCar.setLoai(resultSet.getString(5));
+				newCar.setXuatXu(resultSet.getString(7));
+				newCar.setGiaXe(resultSet.getInt(8));
+				ListCar.add(newCar);
+			}
+			MyDB.closeConnection(conn);
+			return ListCar;
+		} catch (SQLException e) {		
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
 }
 

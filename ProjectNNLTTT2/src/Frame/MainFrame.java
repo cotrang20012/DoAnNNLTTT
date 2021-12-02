@@ -62,7 +62,7 @@ public class MainFrame extends JFrame {
 		JButton btnExti = new JButton("THOÁT");
 		btnExti.setForeground(new Color(0, 0, 0));
 		btnExti.setBackground(new Color(204, 0, 51));
-		btnExti.setBounds(507, 375, 115, 47);
+		btnExti.setBounds(507, 375, 137, 47);
 		contentPane.add(btnExti);
 	}
 }
