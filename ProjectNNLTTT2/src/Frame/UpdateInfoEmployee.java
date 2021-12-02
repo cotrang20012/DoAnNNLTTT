@@ -6,9 +6,17 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import database.NhanvienDAO;
+import model.Account;
+import model.NhanVien;
+
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class UpdateInfoEmployee extends JFrame {
 
@@ -16,28 +24,9 @@ public class UpdateInfoEmployee extends JFrame {
 	private JTextField textAddress;
 	private JTextField textPhone;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					UpdateInfoEmployee frame = new UpdateInfoEmployee();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 */
-	public UpdateInfoEmployee() {
+	public UpdateInfoEmployee(NhanVien nv) {
 		setTitle("CẬP NHẬT THÔNG TIN");
-		setBounds(100, 100, 322, 183);
+		setBounds(100, 100, 322, 182);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -55,18 +44,36 @@ public class UpdateInfoEmployee extends JFrame {
 		textAddress.setBounds(134, 11, 128, 37);
 		contentPane.add(textAddress);
 		textAddress.setColumns(10);
+		textAddress.setText(nv.getDiachi());
 		
 		textPhone = new JTextField();
 		textPhone.setColumns(10);
 		textPhone.setBounds(134, 60, 128, 20);
 		contentPane.add(textPhone);
+		textPhone.setText(nv.getSdt());
 		
 		JButton btnUpdate = new JButton("CẬP NHẬT");
-		btnUpdate.setBounds(173, 106, 89, 23);
+		btnUpdate.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (textAddress.getText() != nv.getDiachi() || textPhone.getText() != nv.getSdt()) {
+					NhanvienDAO nvDAO = new NhanvienDAO();
+					nv.setDiachi(textAddress.getText());
+					nv.setSdt(textPhone.getText());
+					if (nvDAO.UpdateNV(nv)) JOptionPane.showMessageDialog(null, "Cập nhật thành công", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+					else JOptionPane.showMessageDialog(null, "Cập nhật thất bại", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+					}
+			}
+		});
+		btnUpdate.setBounds(173, 104, 89, 23);
 		contentPane.add(btnUpdate);
 		
 		JButton btnExit = new JButton("THOÁT");
-		btnExit.setBounds(35, 106, 89, 23);
+		btnExit.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+			}
+		});
+		btnExit.setBounds(35, 104, 89, 23);
 		contentPane.add(btnExit);
 	}
 }
