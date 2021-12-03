@@ -80,4 +80,15 @@ public class AccountDAO {
 			// TODO: handle exception
 		}
 	}
+	public boolean Delete(String user) {
+		try {
+			conn = MyDB.getConnection();
+			PreparedStatement stmt = conn.prepareStatement("DELETE FROM account where username = ?");
+			stmt.setString(1, user);
+			stmt.execute();
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
+	}
 }

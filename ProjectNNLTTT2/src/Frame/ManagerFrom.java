@@ -5,6 +5,7 @@ import java.awt.EventQueue;
 import java.util.ArrayList;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.event.TableModelEvent;
@@ -16,6 +17,8 @@ import model.Account;
 import model.NhanVien;
 
 import java.awt.Button;
+
+import javax.print.attribute.standard.PrinterInfo;
 import javax.swing.JButton;
 import javax.swing.JTable;
 import javax.swing.JScrollPane;
@@ -31,7 +34,7 @@ public class ManagerFrom extends JFrame {
 	private static ArrayList<Account> listAcc = accDAO.getAccounts();
 	private static NhanvienDAO nvDAO = new NhanvienDAO();
 	private static ArrayList<NhanVien> listNV = nvDAO.getNV();
-	
+
 	public ManagerFrom() {
 		setTitle("QUẢN LÝ");
 		setBounds(100, 100, 844, 471);
@@ -57,28 +60,29 @@ public class ManagerFrom extends JFrame {
 		});
 		btnAddEmployee.setBounds(10, 11, 144, 51);
 		contentPane.add(btnAddEmployee);
-		
+
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(10, 73, 526, 348);
 		contentPane.add(scrollPane);
-		
+
 		tableEmployee = new JTable();
 		scrollPane.setViewportView(tableEmployee);
-		
+
 		JScrollPane scrollPane_1 = new JScrollPane();
 		scrollPane_1.setBounds(551, 73, 267, 348);
 		contentPane.add(scrollPane_1);
-		
+
 		tableAccount = new JTable();
 		scrollPane_1.setViewportView(tableAccount);
-		
+
 		JButton btnUpdateEmployee = new JButton("SỬA THÔNG TIN");
 		btnUpdateEmployee.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				EventQueue.invokeLater(new Runnable() {
 					public void run() {
 						try {
-							UpdateInfoEmployee frame = new UpdateInfoEmployee(listNV.get(tableEmployee.getSelectedRow()));
+							UpdateInfoEmployee frame = new UpdateInfoEmployee(
+									listNV.get(tableEmployee.getSelectedRow()));
 							frame.setVisible(true);
 						} catch (Exception e) {
 							e.printStackTrace();
@@ -90,22 +94,37 @@ public class ManagerFrom extends JFrame {
 		});
 		btnUpdateEmployee.setBounds(164, 11, 126, 51);
 		contentPane.add(btnUpdateEmployee);
-		
+
 		JButton btnDeleteEmployee = new JButton("XOÁ NHÂN VIÊN");
 		btnDeleteEmployee.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				NhanVien nv = listNV.get(tableEmployee.getSelectedRow());
+				int dialogResult = JOptionPane.showConfirmDialog(null, "Bạn có chắc muốn xóa nhân viên này ?");
+				if (dialogResult == 0) {
+					if (nvDAO.CheckSale(nv) == true) {
+						if (accDAO.Delete(nv.getCmnd()) && nvDAO.Delete(nv.getId())) {
+							JOptionPane.showMessageDialog(null, "Xóa thành công");
+							CusTable();
+						}
+
+						else
+							JOptionPane.showMessageDialog(null, "Xóa thất bại");
+					} else
+						JOptionPane.showMessageDialog(null, "Không thể xóa nhân viên này!!!");
+				}
 			}
 		});
 		btnDeleteEmployee.setBounds(300, 11, 126, 51);
 		contentPane.add(btnDeleteEmployee);
-		
+
 		JButton btnUpdateAccount = new JButton("SỬA TÀI KHOẢN");
 		btnUpdateAccount.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				EventQueue.invokeLater(new Runnable() {
 					public void run() {
 						try {
-							ChangePasswordFrame frame = new ChangePasswordFrame(listAcc.get(tableAccount.getSelectedRow()));
+							ChangePasswordFrame frame = new ChangePasswordFrame(
+									listAcc.get(tableAccount.getSelectedRow()));
 							frame.setVisible(true);
 						} catch (Exception e) {
 							e.printStackTrace();
@@ -117,16 +136,19 @@ public class ManagerFrom extends JFrame {
 		});
 		btnUpdateAccount.setBounds(436, 11, 126, 51);
 		contentPane.add(btnUpdateAccount);
-		
+
 		CusTable();
 	}
+
 	private static void CusTable() {
+		listAcc = accDAO.getAccounts();
+		listNV = nvDAO.getNV();
 		DefaultTableModel dtmAcc = new DefaultTableModel();
 		DefaultTableModel dtmNV = new DefaultTableModel();
-		String columnNV[]= {"ID","CMND","Tên","Địa chỉ","Chức vụ","Số điện thoại","Lương"};
+		String columnNV[] = { "ID", "CMND", "Tên", "Địa chỉ", "Chức vụ", "Số điện thoại", "Lương" };
 		dtmAcc.addColumn("Tài khoản");
 		dtmAcc.addColumn("Mật khẩu");
-		for (int i=0;i<columnNV.length;i++)
+		for (int i = 0; i < columnNV.length; i++)
 			dtmNV.addColumn(columnNV[i]);
 		for (Account acc : listAcc) {
 			Object data[] = new Object[2];
@@ -136,7 +158,7 @@ public class ManagerFrom extends JFrame {
 		}
 		for (NhanVien nv : listNV) {
 			Object data[] = new Object[7];
-			int i=0;
+			int i = 0;
 			data[i++] = nv.getId();
 			data[i++] = nv.getCmnd();
 			data[i++] = nv.getTen();

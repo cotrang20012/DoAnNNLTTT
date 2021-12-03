@@ -7,6 +7,11 @@ public class Account {
 	public Account() {
 		
 	}
+	public Account(String user, String pwd, String type) {
+		this.username = user;
+		this.password = pwd;
+		this.usertype = type;
+	}
 	public String getUsername() {
 		return username;
 	}

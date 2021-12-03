@@ -69,4 +69,51 @@ public class NhanvienDAO {
 			// TODO: handle exception
 		}
 	}
+	public boolean CheckSale(NhanVien nv) {
+		try {
+			conn = MyDB.getConnection();
+			PreparedStatement stmt = conn.prepareStatement("SELECT * FROM bill WHERE idsale = ?");
+			stmt.setInt(1, nv.getId());
+			ResultSet rs = stmt.executeQuery();
+			while (rs.next())
+				return false;
+			conn.close();
+		} catch (Exception e) {
+		}
+		return true;
+	}
+	public boolean Delete(int id) {
+		try {
+			conn = MyDB.getConnection();
+			PreparedStatement stmt = conn.prepareStatement("DELETE FROM nhanvien where id = ?");
+			stmt.setInt(1, id);
+			stmt.execute();
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
+	}
+	public NhanVien getNhanVien(String cmnd) {
+		try {
+			conn = MyDB.getConnection();
+			PreparedStatement stmt = conn.prepareStatement("SELECT * FROM nhanvien WHERE cmnd = ?");
+			stmt.setString(1, cmnd);
+			ResultSet rs = stmt.executeQuery();
+			NhanVien nv = new NhanVien();
+			while (rs.next()) {
+				nv.setId(rs.getInt("id"));
+				nv.setCmnd(rs.getString("cmnd"));
+				nv.setTen(rs.getString("ten"));
+				nv.setDiachi(rs.getString("diachi"));
+				nv.setChucvu(rs.getString("chucvu"));
+				nv.setSdt(rs.getString("sdt"));
+				nv.setLuong(rs.getInt("luong"));
+				break;
+			}
+			conn.close();
+			return nv;
+		} catch (Exception e) {
+			return null;
+		}
+	}
 }

@@ -104,11 +104,11 @@ public class LoginFrame extends JFrame {
 									}
 								});
 							}
-							else {
+							else  {
 								EventQueue.invokeLater(new Runnable() {
 									public void run() {
 										try {
-											MainFrame frame = new MainFrame();
+											MainFrame frame = new MainFrame( new Account(textUser.getText(),textPassword.getText(),"SALES"));
 											frame.setVisible(true);
 										} catch (Exception e) {
 											e.printStackTrace();
