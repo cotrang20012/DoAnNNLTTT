@@ -92,30 +92,17 @@ public class LoginFrame extends JFrame {
 						acc.setUsertype("SALES");
 					try {
 						if (accDao.checkLogin(acc) == 1) {
-							if (acc.getUsertype() == "QUANLY") {
 								EventQueue.invokeLater(new Runnable() {
 									public void run() {
 										try {
-											ManagerFrom frame = new ManagerFrom();
+											MainFrame frame = new MainFrame(new Account(textUser.getText(),textPassword.getText(),rdbtnManager.isSelected()? "QUANLY":"SALES"));
 											frame.setVisible(true);
 										} catch (Exception e) {
 											e.printStackTrace();
 										}
 									}
 								});
-							}
-							else  {
-								EventQueue.invokeLater(new Runnable() {
-									public void run() {
-										try {
-											MainFrame frame = new MainFrame( new Account(textUser.getText(),textPassword.getText(),"SALES"));
-											frame.setVisible(true);
-										} catch (Exception e) {
-											e.printStackTrace();
-										}
-									}
-								});
-							}
+		
 							dispose();
 						} else {
 							JOptionPane.showMessageDialog(null, "Username hoặc password không đúng", "Warning",

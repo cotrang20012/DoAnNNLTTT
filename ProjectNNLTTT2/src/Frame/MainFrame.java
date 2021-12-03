@@ -41,9 +41,25 @@ public class MainFrame extends JFrame {
 		tableCar = new JTable();
 		scrollPane.setViewportView(tableCar);
 		
+		
 		JButton btnManager = new JButton("QUẢN LÝ");
+		btnManager.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				EventQueue.invokeLater(new Runnable() {
+					public void run() {
+						try {
+							ManagerFrom frame = new ManagerFrom();
+							frame.setVisible(true);
+						} catch (Exception e) {
+							e.printStackTrace();
+						}
+					}
+				});
+			}
+		});
 		btnManager.setBounds(10, 11, 115, 47);
 		contentPane.add(btnManager);
+		if (acc.getUsertype() == "SALES") btnManager.setEnabled(false);
 		
 		JButton btnCar = new JButton("DANH SÁCH XE");
 		btnCar.setBounds(135, 11, 137, 47);
