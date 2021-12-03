@@ -9,6 +9,7 @@ import javax.swing.border.EmptyBorder;
 
 import database.NhanvienDAO;
 import model.Account;
+import model.Global;
 import model.NhanVien;
 
 import javax.swing.JTable;
@@ -25,7 +26,8 @@ public class MainFrame extends JFrame {
 	private static NhanvienDAO nvDAO = new NhanvienDAO();
 	private static NhanVien nv;
 	public MainFrame(Account acc) {
-		nv = nvDAO.getNhanVien(acc.getUsername());
+		Global.acc = acc;
+		Global.nv =  nvDAO.getNhanVien(acc.getUsername());
 		setTitle("QUẢN LÝ CỬA HÀNG");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 680, 472);
