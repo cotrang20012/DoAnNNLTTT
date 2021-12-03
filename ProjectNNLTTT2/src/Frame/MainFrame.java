@@ -18,6 +18,8 @@ import javax.swing.JButton;
 import java.awt.Color;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class MainFrame extends JFrame {
 
@@ -25,6 +27,7 @@ public class MainFrame extends JFrame {
 	private JTable tableCar;
 	private static NhanvienDAO nvDAO = new NhanvienDAO();
 	private static NhanVien nv;
+	
 	public MainFrame(Account acc) {
 		Global.acc = acc;
 		Global.nv =  nvDAO.getNhanVien(acc.getUsername());
@@ -64,18 +67,78 @@ public class MainFrame extends JFrame {
 		if (acc.getUsertype() == "SALES") btnManager.setEnabled(false);
 		
 		JButton btnCar = new JButton("DANH SÁCH XE");
+		btnCar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				EventQueue.invokeLater(new Runnable() {
+					public void run() {
+						try {
+							CarFrame frame = new CarFrame();
+							frame.setVisible(true);
+						} catch (Exception e) {
+							e.printStackTrace();
+						}
+					}
+				});
+			}
+		});
 		btnCar.setBounds(135, 11, 137, 47);
 		contentPane.add(btnCar);
 		
 		JButton btnKhchHng = new JButton("KHÁCH HÀNG");
+		btnKhchHng.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				EventQueue.invokeLater(new Runnable() {
+					public void run() {
+						try {
+							CustomerFrame frame = new CustomerFrame();
+							frame.setVisible(true);
+						} catch (Exception e) {
+							e.printStackTrace();
+						}
+					}
+				});
+			}
+		});
 		btnKhchHng.setBounds(282, 11, 115, 47);
 		contentPane.add(btnKhchHng);
 		
 		JButton btnDanhSchHo = new JButton("HOÁ ĐƠN");
+		btnDanhSchHo.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				EventQueue.invokeLater(new Runnable() {
+					public void run() {
+						try {
+							BillFrame frame = new BillFrame();
+							frame.setVisible(true);
+						} catch (Exception e) {
+							e.printStackTrace();
+						}
+					}
+				});
+			}
+		});
 		btnDanhSchHo.setBounds(407, 11, 115, 47);
 		contentPane.add(btnDanhSchHo);
 		
 		JButton btnNewButton_3_1 = new JButton("TẠO HOÁ ĐƠN");
+		btnNewButton_3_1.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				EventQueue.invokeLater(new Runnable() {
+					public void run() {
+						try {
+							CreateBillFrame frame = new CreateBillFrame();
+							frame.setVisible(true);
+						} catch (Exception e) {
+							e.printStackTrace();
+						}
+					}
+				});
+			}
+		});
 		btnNewButton_3_1.setBounds(507, 69, 137, 47);
 		contentPane.add(btnNewButton_3_1);
 		
@@ -103,7 +166,7 @@ public class MainFrame extends JFrame {
 				EventQueue.invokeLater(new Runnable() {
 					public void run() {
 						try {
-							UpdateInfoEmployee frame = new UpdateInfoEmployee(nv);
+							UpdateInfoEmployee frame = new UpdateInfoEmployee();
 							frame.setVisible(true);
 						} catch (Exception e) {
 							e.printStackTrace();
@@ -116,9 +179,20 @@ public class MainFrame extends JFrame {
 		contentPane.add(btnNewButton_3_3);
 		
 		JButton btnExti = new JButton("THOÁT");
+		btnExti.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				dispose();
+			}
+		});
 		btnExti.setForeground(new Color(0, 0, 0));
 		btnExti.setBackground(new Color(204, 0, 51));
 		btnExti.setBounds(507, 375, 137, 47);
 		contentPane.add(btnExti);
+		
+		if(Global.acc.getUsertype().equals("SALES")) {
+			btnManager.setEnabled(false);	
+		}
 	}
+	
 }

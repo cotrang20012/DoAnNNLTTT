@@ -81,8 +81,7 @@ public class ManagerFrom extends JFrame {
 				EventQueue.invokeLater(new Runnable() {
 					public void run() {
 						try {
-							UpdateInfoEmployee frame = new UpdateInfoEmployee(
-									listNV.get(tableEmployee.getSelectedRow()));
+							UpdateInfoEmployee frame = new UpdateInfoEmployee(listNV.get(tableEmployee.getSelectedRow()));
 							frame.setVisible(true);
 						} catch (Exception e) {
 							e.printStackTrace();

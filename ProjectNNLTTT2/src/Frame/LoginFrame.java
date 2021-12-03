@@ -46,11 +46,13 @@ public class LoginFrame extends JFrame {
 		contentPane.add(lblNewLabel_1);
 
 		textUser = new JTextField();
+		textUser.setText("0000000000");
 		textUser.setBounds(138, 39, 158, 20);
 		contentPane.add(textUser);
 		textUser.setColumns(10);
 
 		textPassword = new JTextField();
+		textPassword.setText("1");
 		textPassword.setBounds(138, 75, 158, 20);
 		contentPane.add(textPassword);
 		textPassword.setColumns(10);

@@ -1,6 +1,7 @@
 package Frame;
 
 import java.awt.BorderLayout;
+import java.awt.Button;
 import java.awt.EventQueue;
 import java.awt.List;
 
@@ -28,6 +29,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import java.awt.Color;
 import model.CarModel;
+import model.Global;
+
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.Font;
@@ -311,5 +314,9 @@ public class CarFrame extends JFrame {
 			       txt_gia.setText(model.getValueAt(selectedRowIndex, 8).toString());
 			}
 		});
+		if(Global.acc.getUsertype().equals("SALES")) {
+			btnUpdate.setEnabled(false);
+			btnDelete.setEnabled(false);
+		}
 	}
 }

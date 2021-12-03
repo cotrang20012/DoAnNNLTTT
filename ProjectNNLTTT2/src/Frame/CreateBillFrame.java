@@ -18,6 +18,7 @@ import model.BillDetailModel;
 import model.BillModel;
 import model.CarModel;
 import model.CustomerModel;
+import model.Global;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -238,7 +239,7 @@ public class CreateBillFrame extends JFrame {
 					
 				}
 				else {
-					int idBill = BillModel.insertBill(2,Integer.parseInt(comboIDCustomer.getSelectedItem().toString()), ITongHoaDon);
+					int idBill = BillModel.insertBill(Global.nv.getId(),Integer.parseInt(comboIDCustomer.getSelectedItem().toString()), ITongHoaDon);
 					for(int i =0 ; i < tableBill.getModel().getRowCount();i++) {
 						BillDetailModel.insertBillDetail(idBill, Integer.parseInt(tableBill.getValueAt(i, 0).toString()), Integer.parseInt(tableBill.getValueAt(i, 7).toString()));
 						CarModel.updateCarStatus(Integer.parseInt(tableBill.getValueAt(i, 0).toString()));

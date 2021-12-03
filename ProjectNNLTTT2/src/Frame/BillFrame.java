@@ -14,6 +14,7 @@ import model.BillDetailModel;
 import model.BillModel;
 import model.CarModel;
 import model.CustomerModel;
+import model.Global;
 
 import javax.swing.JButton;
 import javax.swing.JTable;
@@ -168,6 +169,9 @@ public class BillFrame extends JFrame {
 		});
 		btnRefresh.setBounds(510, 11, 126, 51);
 		contentPane.add(btnRefresh);
+		if(Global.acc.getUsertype().equals("SALES")) {
+			btnDelete.setEnabled(false);
+		}
 	}
 
 	private void SetDataForTableBill() {

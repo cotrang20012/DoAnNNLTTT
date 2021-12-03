@@ -124,8 +124,9 @@ public class InsertEmployee extends JFrame {
 					}
 					System.out.print(accDAO.Insert(acc));
 					System.out.print(nvDAO.Insert(nv));
-					//if (accDAO.Insert(acc) && nvDAO.Insert(nv)) JOptionPane.showMessageDialog(null, "Thêm nhân viên thành công");
-					//else JOptionPane.showMessageDialog(null, "Thêm nhân viên thất bại");
+					if (accDAO.Insert(acc) && nvDAO.Insert(nv)) JOptionPane.showMessageDialog(null, "Thêm nhân viên thành công");
+					else JOptionPane.showMessageDialog(null, "Thêm nhân viên thất bại");
+					dispose();
 				}
 			}
 		});

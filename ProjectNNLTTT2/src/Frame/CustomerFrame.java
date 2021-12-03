@@ -10,6 +10,7 @@ import javax.swing.table.DefaultTableModel;
 
 import model.CarModel;
 import model.CustomerModel;
+import model.Global;
 
 import javax.swing.JTable;
 import javax.swing.JScrollPane;
@@ -101,7 +102,6 @@ public class CustomerFrame extends JFrame {
 	 * Create the frame.
 	 */
 	public CustomerFrame() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 796, 471);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -251,5 +251,9 @@ public class CustomerFrame extends JFrame {
 			       txt_phone.setText(model.getValueAt(selectedRowIndex, 4).toString());			       
 			}
 		});
+		if(Global.acc.getUsertype().equals("SALES")) {
+			btnUpdate.setEnabled(false);
+			btnDelete.setEnabled(false);
+		}
 	}
 }

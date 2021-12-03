@@ -36,7 +36,6 @@ public class ChangePasswordFrame extends JFrame {
 	 */
 	public ChangePasswordFrame(Account acc) {
 		setTitle("ĐỔI MẬT KHẨU");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 381, 176);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));

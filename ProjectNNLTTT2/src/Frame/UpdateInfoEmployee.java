@@ -9,6 +9,7 @@ import javax.swing.border.EmptyBorder;
 
 import database.NhanvienDAO;
 import model.Account;
+import model.Global;
 import model.NhanVien;
 
 import javax.swing.JLabel;
@@ -24,7 +25,7 @@ public class UpdateInfoEmployee extends JFrame {
 	private JTextField textAddress;
 	private JTextField textPhone;
 
-	public UpdateInfoEmployee(NhanVien nv) {
+	public UpdateInfoEmployee() {
 		setTitle("CẬP NHẬT THÔNG TIN");
 		setBounds(100, 100, 322, 182);
 		contentPane = new JPanel();
@@ -44,22 +45,22 @@ public class UpdateInfoEmployee extends JFrame {
 		textAddress.setBounds(134, 11, 128, 37);
 		contentPane.add(textAddress);
 		textAddress.setColumns(10);
-		textAddress.setText(nv.getDiachi());
+		textAddress.setText(Global.nv.getDiachi());
 		
 		textPhone = new JTextField();
 		textPhone.setColumns(10);
 		textPhone.setBounds(134, 60, 128, 20);
 		contentPane.add(textPhone);
-		textPhone.setText(nv.getSdt());
+		textPhone.setText(Global.nv.getSdt());
 		
 		JButton btnUpdate = new JButton("CẬP NHẬT");
 		btnUpdate.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (textAddress.getText() != nv.getDiachi() || textPhone.getText() != nv.getSdt()) {
+				if (textAddress.getText() != Global.nv.getDiachi() || textPhone.getText() != Global.nv.getSdt()) {
 					NhanvienDAO nvDAO = new NhanvienDAO();
-					nv.setDiachi(textAddress.getText());
-					nv.setSdt(textPhone.getText());
-					if (nvDAO.UpdateNV(nv)) JOptionPane.showMessageDialog(null, "Cập nhật thành công", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+					Global.nv.setDiachi(textAddress.getText());
+					Global.nv.setSdt(textPhone.getText());
+					if (nvDAO.UpdateNV(Global.nv)) JOptionPane.showMessageDialog(null, "Cập nhật thành công", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
 					else JOptionPane.showMessageDialog(null, "Cập nhật thất bại", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
 					}
 			}
