@@ -38,10 +38,13 @@ public class NhanvienDAO {
 	public boolean UpdateNV(NhanVien nv) {
 		try {
 			conn = MyDB.getConnection();
-			PreparedStatement stmt = conn.prepareStatement("UPDATE nhanvien set diachi = ?,sdt=? where id = ?");
+			PreparedStatement stmt = conn.prepareStatement("UPDATE nhanvien set diachi = ?,sdt=?,ten =?,chucvu=?,luong=? where id = ?");
 			stmt.setString(1, nv.getDiachi());
 			stmt.setString(2, nv.getSdt());
-			stmt.setInt(3, nv.getId());
+			stmt.setString(3, nv.getTen());
+			stmt.setString(4, nv.getChucvu());
+			stmt.setInt(5, nv.getLuong());
+			stmt.setInt(6, nv.getId());
 			stmt.execute();
 			conn.close();
 			return true;

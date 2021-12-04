@@ -81,7 +81,11 @@ public class ManagerFrom extends JFrame {
 				EventQueue.invokeLater(new Runnable() {
 					public void run() {
 						try {
+<<<<<<< Updated upstream
 							UpdateInfoEmployee frame = new UpdateInfoEmployee(listNV.get(tableEmployee.getSelectedRow()));
+=======
+							UpdateInfoManager frame = new UpdateInfoManager(listNV.get(tableEmployee.getSelectedRow()));
+>>>>>>> Stashed changes
 							frame.setVisible(true);
 						} catch (Exception e) {
 							e.printStackTrace();
