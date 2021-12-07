@@ -9,10 +9,12 @@ import model.NhanVien;
 
 public class NhanvienDAO {
 	Connection conn;
+
 	public NhanvienDAO() {
-		
+
 	}
-	public ArrayList<NhanVien> getNV(){
+
+	public ArrayList<NhanVien> getNV() {
 		ArrayList<NhanVien> list = new ArrayList<NhanVien>();
 		try {
 			conn = MyDB.getConnection();
@@ -35,10 +37,12 @@ public class NhanvienDAO {
 		}
 		return list;
 	}
+
 	public boolean UpdateNV(NhanVien nv) {
 		try {
 			conn = MyDB.getConnection();
-			PreparedStatement stmt = conn.prepareStatement("UPDATE nhanvien set diachi = ?,sdt=?,ten =?,chucvu=?,luong=? where id = ?");
+			PreparedStatement stmt = conn
+					.prepareStatement("UPDATE nhanvien set diachi = ?,sdt=?,ten =?,chucvu=?,luong=? where id = ?");
 			stmt.setString(1, nv.getDiachi());
 			stmt.setString(2, nv.getSdt());
 			stmt.setString(3, nv.getTen());
@@ -52,6 +56,7 @@ public class NhanvienDAO {
 			return false;
 		}
 	}
+
 	public boolean Insert(NhanVien nv) {
 		try {
 			conn = MyDB.getConnection();
@@ -72,6 +77,7 @@ public class NhanvienDAO {
 			// TODO: handle exception
 		}
 	}
+
 	public boolean CheckSale(NhanVien nv) {
 		try {
 			conn = MyDB.getConnection();
@@ -85,17 +91,21 @@ public class NhanvienDAO {
 		}
 		return true;
 	}
+
 	public boolean Delete(int id) {
 		try {
 			conn = MyDB.getConnection();
 			PreparedStatement stmt = conn.prepareStatement("DELETE FROM nhanvien where id = ?");
 			stmt.setInt(1, id);
 			stmt.execute();
+			MyDB.closeConnection(conn);
 			return true;
 		} catch (Exception e) {
+			MyDB.closeConnection(conn);
 			return false;
 		}
 	}
+
 	public NhanVien getNhanVien(String cmnd) {
 		try {
 			conn = MyDB.getConnection();

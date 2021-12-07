@@ -6,6 +6,7 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.plaf.basic.BasicInternalFrameTitlePane.IconifyAction;
 import javax.swing.table.DefaultTableModel;
 
 import model.CarModel;
@@ -102,6 +103,7 @@ public class CustomerFrame extends JFrame {
 	 * Create the frame.
 	 */
 	public CustomerFrame() {
+		setTitle("QUẢN LÝ KHÁCH HÀNG");
 		setBounds(100, 100, 796, 471);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -112,7 +114,11 @@ public class CustomerFrame extends JFrame {
 		scrollPane.setBounds(10, 73, 514, 348);
 		contentPane.add(scrollPane);
 		
-		tableCustomer = new JTable();
+		tableCustomer = new JTable(){
+			public boolean editCellAt(int row, int column, java.util.EventObject e) {
+				return false;
+			}
+		};
 		scrollPane.setViewportView(tableCustomer);
 		
 		btnAdd = new JButton("TH\u00CAM KH\u00C1CH H\u00C0NG");
@@ -199,21 +205,27 @@ public class CustomerFrame extends JFrame {
 		
 		btnUpdate.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(txt_id.getText()=="") {
+				if(txt_id.getText().equals("")){
 					JOptionPane.showMessageDialog(contentPane, "Vui lòng chọn KH để cập nhật!");	
 				}
 				else {
-					CustomerModel cust = getCust();
-					CustomerModel.updateCust(cust);
-					JOptionPane.showMessageDialog(contentPane, "Cập nhật thành công!");
-					loadData();
+					if(txt_id.getText().equals("") || txt_name.getText().equals("") || txt_cmnd.getText().equals("") || txt_addr.getText().equals("") || txt_phone.getText().equals("")) {
+						JOptionPane.showMessageDialog(contentPane, "Vui lòng điền đầy đủ thông tin!");
+						loadData();
+					}
+					else {
+						CustomerModel cust = getCust();
+						CustomerModel.updateCust(cust);
+						JOptionPane.showMessageDialog(contentPane, "Cập nhật thành công!");
+						loadData();
+					}
 				}	
 			}
 		});
 		
 		btnDelete.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(txt_id.getText()=="") {
+				if(txt_id.getText().equals("")) {
 					JOptionPane.showMessageDialog(contentPane, "Vui lòng chọn KH để xóa!");	
 				}
 				else {

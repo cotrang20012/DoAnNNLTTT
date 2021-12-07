@@ -100,33 +100,35 @@ public class InsertEmployee extends JFrame {
 		JButton btnAdd = new JButton("THÊM ");
 		btnAdd.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (textSID.getText().trim().length() < 10)
-					JOptionPane.showMessageDialog(null, "Vui lòng điền đúng CMND/CCCD");
+				if(textSID.getText().equals("") || textAddress.getText().equals("") || textName.getText().equals("") || textPhone.getText().equals("") || textSalary.getText().equals("")) {
+				}
 				else {
-					NhanVien nv = new NhanVien();
-					NhanvienDAO nvDAO = new NhanvienDAO();
-					AccountDAO accDAO = new AccountDAO();
-					Account acc = new Account();
-					nv.setCmnd(textSID.getText());
-					nv.setTen(textName.getText());
-					nv.setSdt(textPhone.getText());
-					nv.setDiachi(textAddress.getText());
-					nv.setLuong(Integer.valueOf(textSalary.getText()));
-					acc.setUsername(textSID.getText());
-					acc.setPassword("1");
-					if (rdbtnManager.isSelected()) {
-						nv.setChucvu("QUANLY");
-						acc.setUsertype("QUANLY");
-					}
+					if (textSID.getText().trim().length() < 10)
+						JOptionPane.showMessageDialog(null, "Vui lòng điền đúng CMND/CCCD");
 					else {
-						nv.setChucvu("SALES");
-						acc.setUsertype("SALES");
+						NhanVien nv = new NhanVien();
+						NhanvienDAO nvDAO = new NhanvienDAO();
+						AccountDAO accDAO = new AccountDAO();
+						Account acc = new Account();
+						nv.setCmnd(textSID.getText());
+						nv.setTen(textName.getText());
+						nv.setSdt(textPhone.getText());
+						nv.setDiachi(textAddress.getText());
+						nv.setLuong(Integer.valueOf(textSalary.getText()));
+						acc.setUsername(textSID.getText());
+						acc.setPassword("1");
+						if (rdbtnManager.isSelected()) {
+							nv.setChucvu("QUANLY");
+							acc.setUsertype("QUANLY");
+						}
+						else {
+							nv.setChucvu("SALES");
+							acc.setUsertype("SALES");
+						}
+						if (accDAO.Insert(acc) && nvDAO.Insert(nv)) JOptionPane.showMessageDialog(null, "Thêm nhân viên thành công");
+						else JOptionPane.showMessageDialog(null, "Thêm nhân viên thất bại");
+						dispose();
 					}
-					System.out.print(accDAO.Insert(acc));
-					System.out.print(nvDAO.Insert(nv));
-					if (accDAO.Insert(acc) && nvDAO.Insert(nv)) JOptionPane.showMessageDialog(null, "Thêm nhân viên thành công");
-					else JOptionPane.showMessageDialog(null, "Thêm nhân viên thất bại");
-					dispose();
 				}
 			}
 		});
@@ -136,7 +138,7 @@ public class InsertEmployee extends JFrame {
 		JButton btnExit = new JButton("THOÁT");
 		btnExit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				dispose();
+				hide();
 			}
 		});
 		btnExit.setBounds(36, 191, 89, 23);

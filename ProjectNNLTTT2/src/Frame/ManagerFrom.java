@@ -9,7 +9,10 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.event.TableModelEvent;
+import javax.swing.plaf.basic.BasicInternalFrameTitlePane.IconifyAction;
 import javax.swing.table.DefaultTableModel;
+
+import com.mysql.cj.result.Row;
 
 import database.AccountDAO;
 import database.NhanvienDAO;
@@ -65,14 +68,22 @@ public class ManagerFrom extends JFrame {
 		scrollPane.setBounds(10, 73, 526, 348);
 		contentPane.add(scrollPane);
 
-		tableEmployee = new JTable();
+		tableEmployee = new JTable(){
+			public boolean editCellAt(int row, int column, java.util.EventObject e) {
+				return false;
+			}
+		};
 		scrollPane.setViewportView(tableEmployee);
 
 		JScrollPane scrollPane_1 = new JScrollPane();
 		scrollPane_1.setBounds(551, 73, 267, 348);
 		contentPane.add(scrollPane_1);
 
-		tableAccount = new JTable();
+		tableAccount = new JTable(){
+			public boolean editCellAt(int row, int column, java.util.EventObject e) {
+				return false;
+			}
+		};
 		scrollPane_1.setViewportView(tableAccount);
 
 		JButton btnUpdateEmployee = new JButton("SỬA THÔNG TIN");
@@ -81,12 +92,13 @@ public class ManagerFrom extends JFrame {
 				EventQueue.invokeLater(new Runnable() {
 					public void run() {
 						try {
-<<<<<<< Updated upstream
-							UpdateInfoEmployee frame = new UpdateInfoEmployee(listNV.get(tableEmployee.getSelectedRow()));
-=======
-							UpdateInfoManager frame = new UpdateInfoManager(listNV.get(tableEmployee.getSelectedRow()));
->>>>>>> Stashed changes
-							frame.setVisible(true);
+							int row = tableEmployee.getSelectedRow();
+							System.out.println(row);
+							if (row != -1) {
+								UpdateInfoManager frame = new UpdateInfoManager(
+										listNV.get(tableEmployee.getSelectedRow()));
+								frame.setVisible(true);
+							}
 						} catch (Exception e) {
 							e.printStackTrace();
 						}
@@ -101,19 +113,22 @@ public class ManagerFrom extends JFrame {
 		JButton btnDeleteEmployee = new JButton("XOÁ NHÂN VIÊN");
 		btnDeleteEmployee.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				NhanVien nv = listNV.get(tableEmployee.getSelectedRow());
-				int dialogResult = JOptionPane.showConfirmDialog(null, "Bạn có chắc muốn xóa nhân viên này ?");
-				if (dialogResult == 0) {
-					if (nvDAO.CheckSale(nv) == true) {
-						if (accDAO.Delete(nv.getCmnd()) && nvDAO.Delete(nv.getId())) {
-							JOptionPane.showMessageDialog(null, "Xóa thành công");
-							CusTable();
-						}
-
-						else
-							JOptionPane.showMessageDialog(null, "Xóa thất bại");
-					} else
-						JOptionPane.showMessageDialog(null, "Không thể xóa nhân viên này!!!");
+				int row =  tableEmployee.getSelectedRow();
+				System.out.println(row != -1);
+				if(row != -1) {
+					NhanVien nv = listNV.get(tableEmployee.getSelectedRow());
+					int dialogResult = JOptionPane.showConfirmDialog(null, "Bạn có chắc muốn xóa nhân viên này ?");
+					if (dialogResult == 0) {
+						if (nvDAO.CheckSale(nv) == true) {
+							if (nvDAO.Delete(nv.getId())) {
+								accDAO.Delete(nv.getCmnd());
+								JOptionPane.showMessageDialog(null, "Xóa thành công");
+								CusTable();
+							} else
+								JOptionPane.showMessageDialog(null, "Xóa thất bại");
+						} else
+							JOptionPane.showMessageDialog(null, "Không thể xóa nhân viên này!!!");
+					}
 				}
 			}
 		});
@@ -126,9 +141,12 @@ public class ManagerFrom extends JFrame {
 				EventQueue.invokeLater(new Runnable() {
 					public void run() {
 						try {
-							ChangePasswordFrame frame = new ChangePasswordFrame(
-									listAcc.get(tableAccount.getSelectedRow()));
-							frame.setVisible(true);
+							int row =  tableAccount.getSelectedRow();
+							if (row != -1) {
+								ChangePasswordFrame frame = new ChangePasswordFrame(
+										listAcc.get(tableAccount.getSelectedRow()));
+								frame.setVisible(true);
+							}
 						} catch (Exception e) {
 							e.printStackTrace();
 						}

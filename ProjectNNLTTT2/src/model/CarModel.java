@@ -108,15 +108,14 @@ public class CarModel {
 			pStatement.setInt(8, car.getGiaXe());
 						
 			pStatement.execute();
-
 		} catch (SQLException e) {
+			MyDB.closeConnection(conn);
 			e.printStackTrace();
 		}
-	    
 	   MyDB.closeConnection(conn);
 	}
 	
-	public static void deleteCar(CarModel car) {
+	public static boolean deleteCar(CarModel car) {
 		Connection conn = MyDB.getConnection();
 		String deleteQuery = "DELETE FROM xe WHERE id = ?";
 	    PreparedStatement pStatement = null;
@@ -125,10 +124,12 @@ public class CarModel {
 	    	pStatement.setInt(1, car.getId());
 	    	
 	    	pStatement.execute();
+	    	MyDB.closeConnection(conn);
+	    	return true;
 	    } catch (SQLException e) {
-			e.printStackTrace();
+	    	MyDB.closeConnection(conn);
+			return false;
 		}
-	   MyDB.closeConnection(conn);
 	}
 	
 	public static void updateCar(CarModel car) {

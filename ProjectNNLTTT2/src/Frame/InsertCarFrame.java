@@ -152,7 +152,7 @@ public class InsertCarFrame extends JFrame {
 		btnClear.setBounds(175, 283, 80, 42);
 		contentPane.add(btnClear);
 		
-		String[] loaiXe = {"XE 2 BANH", "XE 4 BANH"};
+		String[] loaiXe = {"XE 2 BÁNH", "XE 4 BÁNH"};
 		JComboBox<String> cb_loai = new JComboBox(loaiXe);
 		cb_loai.setBounds(90, 150, 170, 22);
 		contentPane.add(cb_loai);

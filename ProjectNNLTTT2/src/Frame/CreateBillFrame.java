@@ -97,21 +97,25 @@ public class CreateBillFrame extends JFrame {
 		contentPane.add(lblNewLabel_1_2_1);
 		
 		textName = new JTextField();
+		textName.setEditable(false);
 		textName.setBounds(135, 33, 187, 20);
 		contentPane.add(textName);
 		textName.setColumns(10);
 		
 		textAddress = new JTextField();
+		textAddress.setEditable(false);
 		textAddress.setColumns(10);
 		textAddress.setBounds(135, 58, 187, 20);
 		contentPane.add(textAddress);
 		
 		textPhone = new JTextField();
+		textPhone.setEditable(false);
 		textPhone.setColumns(10);
 		textPhone.setBounds(135, 83, 187, 20);
 		contentPane.add(textPhone);
 		
 		textEmployee = new JTextField();
+		textEmployee.setEditable(false);
 		textEmployee.setColumns(10);
 		textEmployee.setBounds(135, 108, 187, 20);
 		contentPane.add(textEmployee);
@@ -171,6 +175,12 @@ public class CreateBillFrame extends JFrame {
 		scrollPane.setViewportView(tableCar);
 		
 		JButton btnExit = new JButton("THOÁT");
+		btnExit.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				hide();
+			}
+		});
 		btnExit.setBounds(678, 433, 177, 51);
 		contentPane.add(btnExit);
 		
@@ -253,8 +263,8 @@ public class CreateBillFrame extends JFrame {
 		});
 		btnCreateBill.setBounds(678, 343, 177, 51);
 		contentPane.add(btnCreateBill);
-		
 		TinhTongHoaDon(lblTongHoaDon);
+		textEmployee.setText(String.valueOf(Global.nv.getId()));
 	}
 	
 	private void SetDataForTableCar() {

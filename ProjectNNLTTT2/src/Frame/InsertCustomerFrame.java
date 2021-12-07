@@ -51,7 +51,7 @@ public class InsertCustomerFrame extends JFrame {
 		}
 		
 		public boolean existEmptyField() {
-			if(txt_addr.getText()==""||txt_cmnd.getText()==""||txt_name.getText()==""||txt_phone.getText()=="") {
+			if(txt_addr.getText().equals("")||txt_cmnd.getText().equals("")||txt_name.getText().equals("")||txt_phone.getText().equals("")) {
 				return true;
 			} else
 				return false;
@@ -129,7 +129,6 @@ public class InsertCustomerFrame extends JFrame {
 				}
 			}
 		});
-		
 		btnClear.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				clearText();
