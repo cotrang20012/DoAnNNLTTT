@@ -60,8 +60,8 @@ public class AccountDAO {
 			conn.close();
 			return true;
 		} catch (Exception e) {
+			MyDB.closeConnection(conn);
 			return false;
-			// TODO: handle exception
 		}
 	}
 	public boolean Insert(Account acc) {
@@ -75,9 +75,9 @@ public class AccountDAO {
 			conn.close();
 			return true;
 		} catch (Exception e) {
+			MyDB.closeConnection(conn);
 			e.printStackTrace();
 			return false;
-			// TODO: handle exception
 		}
 	}
 	public boolean Delete(String user) {
@@ -86,8 +86,10 @@ public class AccountDAO {
 			PreparedStatement stmt = conn.prepareStatement("DELETE FROM account where username = ?");
 			stmt.setString(1, user);
 			stmt.execute();
+			conn.close();
 			return true;
 		} catch (Exception e) {
+			MyDB.closeConnection(conn);
 			return false;
 		}
 	}

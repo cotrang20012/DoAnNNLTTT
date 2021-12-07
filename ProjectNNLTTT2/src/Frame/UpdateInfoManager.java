@@ -25,7 +25,6 @@ public class UpdateInfoManager extends JFrame {
 	private JPanel contentPane;
 
 	public UpdateInfoManager(NhanVien nv) {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 346, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -79,6 +78,7 @@ public class UpdateInfoManager extends JFrame {
 		contentPane.add(textLuong);
 		
 		JRadioButton rdbtnManager = new JRadioButton("Manager");
+		rdbtnManager.setSelected(true);
 		rdbtnManager.setBounds(87, 168, 88, 23);
 		contentPane.add(rdbtnManager);
 		

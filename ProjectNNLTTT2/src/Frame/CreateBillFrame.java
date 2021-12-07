@@ -5,15 +5,19 @@ import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
+import database.NhanvienDAO;
 import model.BillDetailModel;
 import model.BillModel;
 import model.CarModel;
@@ -44,6 +48,7 @@ public class CreateBillFrame extends JFrame {
 	private BillDetailModel billDetailModel = new BillDetailModel();
 	private CustomerModel customerModel = new CustomerModel();
 	private int ITongHoaDon = 0;
+	private Date date  = new Date(Calendar.getInstance().getTime().getTime());
 
 	/**
 	 * Launch the application.
@@ -249,11 +254,12 @@ public class CreateBillFrame extends JFrame {
 					
 				}
 				else {
-					int idBill = BillModel.insertBill(Global.nv.getId(),Integer.parseInt(comboIDCustomer.getSelectedItem().toString()), ITongHoaDon);
+					int idBill = BillModel.insertBill(Global.nv.getId(),Integer.parseInt(comboIDCustomer.getSelectedItem().toString()), ITongHoaDon,date);
 					for(int i =0 ; i < tableBill.getModel().getRowCount();i++) {
 						BillDetailModel.insertBillDetail(idBill, Integer.parseInt(tableBill.getValueAt(i, 0).toString()), Integer.parseInt(tableBill.getValueAt(i, 7).toString()));
 						CarModel.updateCarStatus(Integer.parseInt(tableBill.getValueAt(i, 0).toString()));
 					}
+					NhanvienDAO.updateNhanVienSalary(Global.nv.getId(),ITongHoaDon);
 					JOptionPane optionPane = new JOptionPane();
 					optionPane.showMessageDialog(null, "Thêm hoá đơn thành công", "InfoBox: " + "QUẢN LÝ ĐƠN HÀNG",
 							JOptionPane.INFORMATION_MESSAGE);

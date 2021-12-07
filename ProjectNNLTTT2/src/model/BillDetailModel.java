@@ -42,6 +42,7 @@ public class BillDetailModel {
 			pStatement.setInt(3, gia);			
 			pStatement.executeUpdate();
 		} catch (SQLException e) {
+			MyDB.closeConnection(conn);
 			e.printStackTrace();
 		}
 	    MyDB.closeConnection(conn);
@@ -57,6 +58,7 @@ public class BillDetailModel {
 	    	
 	    	pStatement.executeUpdate();
 	    } catch (SQLException e) {
+	    	MyDB.closeConnection(conn);
 			e.printStackTrace();
 		}
 	   MyDB.closeConnection(conn);

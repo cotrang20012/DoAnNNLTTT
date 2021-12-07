@@ -56,13 +56,18 @@ public class UpdateInfoEmployee extends JFrame {
 		JButton btnUpdate = new JButton("CẬP NHẬT");
 		btnUpdate.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (textAddress.getText() != Global.nv.getDiachi() || textPhone.getText() != Global.nv.getSdt()) {
-					NhanvienDAO nvDAO = new NhanvienDAO();
-					Global.nv.setDiachi(textAddress.getText());
-					Global.nv.setSdt(textPhone.getText());
-					if (nvDAO.UpdateNV(Global.nv)) JOptionPane.showMessageDialog(null, "Cập nhật thành công", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
-					else JOptionPane.showMessageDialog(null, "Cập nhật thất bại", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
-					}
+				if(textAddress.getText().equals("")|| textPhone.getText().equals("")) {
+					JOptionPane.showMessageDialog(null, "Vui lòng điền đầy đủ thông tin", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+				}
+				else {
+					if (textAddress.getText() != Global.nv.getDiachi() || textPhone.getText() != Global.nv.getSdt()) {
+						NhanvienDAO nvDAO = new NhanvienDAO();
+						Global.nv.setDiachi(textAddress.getText());
+						Global.nv.setSdt(textPhone.getText());
+						if (nvDAO.UpdateNV(Global.nv)) JOptionPane.showMessageDialog(null, "Cập nhật thành công", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+						else JOptionPane.showMessageDialog(null, "Cập nhật thất bại", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+						}
+				}
 			}
 		});
 		btnUpdate.setBounds(173, 104, 89, 23);

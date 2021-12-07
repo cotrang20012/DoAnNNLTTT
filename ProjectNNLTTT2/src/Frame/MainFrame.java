@@ -190,6 +190,25 @@ public class MainFrame extends JFrame {
 		btnExti.setBounds(507, 375, 137, 47);
 		contentPane.add(btnExti);
 		
+		JButton btnStatistics = new JButton("THỐNG KÊ");
+		btnStatistics.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				EventQueue.invokeLater(new Runnable() {
+					public void run() {
+						try {
+							StatisticsFrame frame = new StatisticsFrame();
+							frame.setVisible(true);
+						} catch (Exception e) {
+							e.printStackTrace();
+						}
+					}
+				});	
+			}
+		});
+		btnStatistics.setBounds(507, 243, 137, 47);
+		contentPane.add(btnStatistics);
+		
 		if(Global.acc.getUsertype().equals("SALES")) {
 			btnManager.setEnabled(false);	
 		}

@@ -89,14 +89,14 @@ public class ManagerFrom extends JFrame {
 		JButton btnUpdateEmployee = new JButton("SỬA THÔNG TIN");
 		btnUpdateEmployee.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				int row = tableEmployee.getSelectedRow();
+				System.out.println(row);
 				EventQueue.invokeLater(new Runnable() {
 					public void run() {
 						try {
-							int row = tableEmployee.getSelectedRow();
-							System.out.println(row);
 							if (row != -1) {
 								UpdateInfoManager frame = new UpdateInfoManager(
-										listNV.get(tableEmployee.getSelectedRow()));
+										listNV.get(row));
 								frame.setVisible(true);
 							}
 						} catch (Exception e) {
@@ -138,13 +138,13 @@ public class ManagerFrom extends JFrame {
 		JButton btnUpdateAccount = new JButton("SỬA TÀI KHOẢN");
 		btnUpdateAccount.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				int row =  tableAccount.getSelectedRow();
 				EventQueue.invokeLater(new Runnable() {
 					public void run() {
 						try {
-							int row =  tableAccount.getSelectedRow();
 							if (row != -1) {
 								ChangePasswordFrame frame = new ChangePasswordFrame(
-										listAcc.get(tableAccount.getSelectedRow()));
+										listAcc.get(row));
 								frame.setVisible(true);
 							}
 						} catch (Exception e) {

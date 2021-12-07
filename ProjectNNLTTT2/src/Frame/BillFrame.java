@@ -21,6 +21,7 @@ import javax.swing.JTable;
 import javax.swing.JScrollPane;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import javax.swing.JLabel;
 
 public class BillFrame extends JFrame {
 
@@ -53,11 +54,15 @@ public class BillFrame extends JFrame {
 	 */
 	public BillFrame() {
 		setTitle("QUẢN LÝ HOÁ ĐƠN");
-		setBounds(100, 100, 796, 471);
+		setBounds(100, 100, 796, 491);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		
+		JLabel lblNewLabel = new JLabel("New label");
+		lblNewLabel.setBounds(491, 427, 145, 14);
+		contentPane.add(lblNewLabel);
 
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(10, 73, 626, 348);
@@ -74,6 +79,7 @@ public class BillFrame extends JFrame {
 		Billmodel.addColumn("ID Nhân Viên");
 		Billmodel.addColumn("ID Khách Hàng");
 		Billmodel.addColumn("Tổng giá trị hoá đơn");
+		Billmodel.addColumn("Ngày");
 		tableBill.setModel(Billmodel);
 		SetDataForTableBill();
 		scrollPane.setViewportView(tableBill);
@@ -139,6 +145,7 @@ public class BillFrame extends JFrame {
 						BillDetailModel.deleteBillDetailAfterDeleteBill(Integer.parseInt(idBill));
 						BillModel.DeleteBill(Integer.parseInt(idBill));
 						RefreshBillTable();
+						TinhTongHoaDon(lblNewLabel);
 						JOptionPane optionPane1 = new JOptionPane();
 						optionPane1.showMessageDialog(null, "Xoá Hoá Đơn Thành Công", "InfoBox: " + "QUẢN LÝ HOÁ ĐƠN",
 								JOptionPane.INFORMATION_MESSAGE);
@@ -165,6 +172,7 @@ public class BillFrame extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				RefreshBillTable();
+				TinhTongHoaDon(lblNewLabel);
 			}
 		});
 		btnRefresh.setBounds(510, 11, 126, 51);
@@ -172,13 +180,14 @@ public class BillFrame extends JFrame {
 		if(Global.acc.getUsertype().equals("SALES")) {
 			btnDelete.setEnabled(false);
 		}
+		TinhTongHoaDon(lblNewLabel);
 	}
 
 	private void SetDataForTableBill() {
 		ArrayList<BillModel> listBill = BillModel.viewBillForBillFrame();
 		for (BillModel bill : listBill) {
 			String[] item = { String.valueOf(bill.getIdbill()), String.valueOf(bill.getIdsale()),
-					String.valueOf(bill.getIdkhachhang()), String.valueOf(bill.getTonghoadon()) };
+					String.valueOf(bill.getIdkhachhang()), String.valueOf(bill.getTonghoadon()),bill.getDate().toString()};
 			DefaultTableModel model = (DefaultTableModel) tableBill.getModel();
 			model.addRow(item);
 			model.fireTableDataChanged();
@@ -194,5 +203,17 @@ public class BillFrame extends JFrame {
 			model.addRow(item);
 		}
 		model.fireTableDataChanged();
+	}
+	
+	private void TinhTongHoaDon(JLabel lblTongHoaDon) {
+		DefaultTableModel model = (DefaultTableModel) tableBill.getModel();
+		int TongHoaDon = 0;
+		if(model.getRowCount()!=0) {
+			for(int i = 0; i < model.getRowCount();i++) {
+				int GiaTri =   Integer.parseInt((model.getValueAt(i, 3).toString()));
+				TongHoaDon += GiaTri;
+			}
+		}
+		lblTongHoaDon.setText("Tổng: "+String.valueOf(TongHoaDon));		
 	}
 }

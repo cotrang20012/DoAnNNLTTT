@@ -33,6 +33,7 @@ public class NhanvienDAO {
 			}
 			conn.close();
 		} catch (Exception e) {
+			MyDB.closeConnection(conn);
 			// TODO: handle exception
 		}
 		return list;
@@ -53,6 +54,7 @@ public class NhanvienDAO {
 			conn.close();
 			return true;
 		} catch (Exception e) {
+			MyDB.closeConnection(conn);
 			return false;
 		}
 	}
@@ -72,6 +74,7 @@ public class NhanvienDAO {
 			conn.close();
 			return true;
 		} catch (Exception e) {
+			MyDB.closeConnection(conn);
 			e.printStackTrace();
 			return false;
 			// TODO: handle exception
@@ -88,6 +91,7 @@ public class NhanvienDAO {
 				return false;
 			conn.close();
 		} catch (Exception e) {
+			MyDB.closeConnection(conn);
 		}
 		return true;
 	}
@@ -126,7 +130,25 @@ public class NhanvienDAO {
 			conn.close();
 			return nv;
 		} catch (Exception e) {
+			MyDB.closeConnection(conn);
 			return null;
+		}
+	}
+	
+	public static boolean updateNhanVienSalary(int id,int TongHoaDon) {
+		int HoaHong = TongHoaDon*10/100;
+		Connection conn = MyDB.getConnection();
+		try {
+			PreparedStatement stmt = conn
+					.prepareStatement("UPDATE nhanvien set luong = luong + ? where id = ?");
+			stmt.setInt(1, HoaHong);
+			stmt.setInt(2, id);
+			stmt.execute();
+			conn.close();
+			return true;
+		} catch (Exception e) {
+			MyDB.closeConnection(conn);
+			return false;
 		}
 	}
 }
