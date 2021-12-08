@@ -76,7 +76,7 @@ public class InsertCarFrame extends JFrame {
 	 */
 	public InsertCarFrame() {
 		//Initialize
-		setTitle("Nhap Thong Tin Xe");
+		setTitle("Nhập Thông Tin Xe");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 300, 375);
 		contentPane = new JPanel();
