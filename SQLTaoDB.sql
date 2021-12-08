@@ -1,5 +1,4 @@
 
-
 CREATE DATABASE ProjectNNLTTT;
 USE ProjectNNLTTT;
 
@@ -46,7 +45,7 @@ CREATE TABLE bill(
 	idbill int NOT NULL auto_increment,
     idsale int,
     idkhachhang int,
-    thonghoadon int,
+    tonghoadon int,
 	FOREIGN KEY (idsale) REFERENCES nhanvien(id),
     FOREIGN KEY (idkhachhang) REFERENCES khachhang(id),
     PRIMARY KEY(idbill)
@@ -59,5 +58,26 @@ CREATE TABLE billdetail(
     FOREIGN KEY(idbill) REFERENCES bill(idbill),
     FOREIGN KEY(idxe) REFERENCES xe(id)
 );
+
+DROP procedure IF EXISTS `SEARCHCAR`;SEARCHCAR
+
+DELIMITER $$
+USE `projectnnlttt`$$
+CREATE PROCEDURE `SEARCHCAR` (IN priceMin int, IN priceMax int,IN Sphankhoi int, IN Smodel varchar(255), IN Smauxe nvarchar(255), IN Sthuonghieu nvarchar(255), IN Sxuatxu nvarchar(255), IN Strangthai nvarchar(255))
+BEGIN
+	SELECT * FROM xe
+	    WHERE (priceMin = -1 OR gia >= priceMin)
+ 		AND (priceMax = -1 OR gia <= priceMax)
+ 		AND (Smodel = '-1' OR xe.model like CONCAT('%', Smodel, '%'))
+ 		AND (Sphankhoi = -1 OR phankhoi like CONCAT('%', Sphankhoi, '%'))
+		AND (Smauxe = N'-1' OR xe.mauxe like CONCAT('%', Smauxe, '%'))
+		AND (Sthuonghieu = N'-1' OR xe.thuonghieu like CONCAT('%', Sthuonghieu, '%'))
+        AND (Sxuatxu = N'-1' OR xe.xuatxu like CONCAT('%', Sxuatxu, '%'))
+        AND (Strangthai = N'-1' OR xe.trangthai like CONCAT('%', Strangthai, '%'));
+END$$
+
+DELIMITER ;
+
+CALL SEARCHCAR(-1,-1,'-1',-1,'-1','-1','-1','-1')
 
 

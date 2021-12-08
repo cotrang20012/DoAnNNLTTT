@@ -161,7 +161,7 @@ public class CarModel {
 		String viewQuery = "SELECT * FROM xe WHERE trangthai = ?; ";
 		try {
 			PreparedStatement pStatement = conn.prepareStatement(viewQuery);
-			pStatement.setString(1, "CHƯA BÁN");
+			pStatement.setString(1, "CHÆ¯A BÃ�N");
 			ResultSet resultSet = pStatement.executeQuery();
 			ArrayList<CarModel> ListCar = new ArrayList<CarModel>();
 			while(resultSet.next()) {
@@ -212,13 +212,49 @@ public class CarModel {
         return null;
 	}
 	
+	public static ArrayList<CarModel> searchCar(int priceMin, int priceMax, String model, int phankhoi, String mauxe, String thuonghieu, String xuatxu, String trangthai) {
+        try {           
+            Connection con = MyDB.getConnection();
+            String searchQuery = "CALL SEARCHCAR(?,?,?,?,?,?,?,?)";
+            PreparedStatement stmt = con.prepareStatement(searchQuery);
+            stmt.setInt(1, priceMin);
+            stmt.setInt(2, priceMax);
+            stmt.setInt(3, phankhoi);
+            stmt.setString(4, model);
+            stmt.setString(5, mauxe);
+            stmt.setString(6, thuonghieu);
+            stmt.setString(7, xuatxu);
+            stmt.setString(8, trangthai);
+            ArrayList<CarModel> lst = new ArrayList<CarModel>();
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+            	CarModel car = new CarModel();
+				car.setId(rs.getInt("id"));
+				car.setModelXe(rs.getString("model"));
+				car.setMauXe(rs.getString("mauxe"));
+				car.setLoai(rs.getString("loai"));
+				car.setPhanKhoi(rs.getInt("phankhoi"));
+				car.setXuatXu(rs.getString("xuatxu"));
+				car.setTrangThai(rs.getString("trangthai"));
+				car.setGiaXe(rs.getInt("gia"));
+				car.setThuongHieu(rs.getString("thuonghieu"));
+                lst.add(car);
+            }
+            MyDB.closeConnection(con);
+            return lst;
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return null;
+	}
+	
 	public static void updateCarStatus(int carID) {
 		Connection conn = MyDB.getConnection();
 		String updateQuery = "UPDATE xe SET trangthai= ? WHERE id= ?";
 	    PreparedStatement pStatement = null;
 	    try {
 	    	pStatement =conn.prepareStatement(updateQuery);
-	    	pStatement.setString(1, "ĐÃ BÁN");
+	    	pStatement.setString(1, "Ä�Ãƒ BÃ�N");
 			pStatement.setInt(2, carID);
 				
 			pStatement.executeUpdate();
@@ -233,7 +269,7 @@ public class CarModel {
 	    PreparedStatement pStatement = null;
 	    try {
 	    	pStatement =conn.prepareStatement(updateQuery);
-	    	pStatement.setString(1, "CHƯA BÁN");
+	    	pStatement.setString(1, "CHÆ¯A BÃ�N");
 			pStatement.setInt(2, carID);
 				
 			pStatement.executeUpdate();
