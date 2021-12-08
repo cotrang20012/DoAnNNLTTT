@@ -232,8 +232,10 @@ public class CustomerFrame extends JFrame {
 					int delConfirmed = JOptionPane.showConfirmDialog(null, "Bạn có chắc chắn muốn xóa không?");
 					if (delConfirmed == 0) {
 						CustomerModel cust = getCust();
-						CustomerModel.deleteCust(cust);
-						JOptionPane.showMessageDialog(contentPane, "Xóa thành công!");
+						if(CustomerModel.deleteCust(cust)) {
+							JOptionPane.showMessageDialog(contentPane, "Xóa thành công!");
+						}
+						JOptionPane.showMessageDialog(contentPane, "Xóa không thành công!");
 						loadData();
 					}
 				}
@@ -256,11 +258,13 @@ public class CustomerFrame extends JFrame {
 			       int selectedRowIndex = tableCustomer.getSelectedRow();
 			       
 			        // set the selected row data into jtextfields
-			       txt_id.setText(model.getValueAt(selectedRowIndex, 0).toString());
-			       txt_name.setText(model.getValueAt(selectedRowIndex, 1).toString());
-			       txt_cmnd.setText(model.getValueAt(selectedRowIndex, 2).toString());
-			       txt_addr.setText(model.getValueAt(selectedRowIndex, 3).toString());
-			       txt_phone.setText(model.getValueAt(selectedRowIndex, 4).toString());			       
+			       if(selectedRowIndex != -1) {
+			    	   txt_id.setText(model.getValueAt(selectedRowIndex, 0).toString());
+				       txt_name.setText(model.getValueAt(selectedRowIndex, 1).toString());
+				       txt_cmnd.setText(model.getValueAt(selectedRowIndex, 2).toString());
+				       txt_addr.setText(model.getValueAt(selectedRowIndex, 3).toString());
+				       txt_phone.setText(model.getValueAt(selectedRowIndex, 4).toString());		
+			       }	       
 			}
 		});
 		if(Global.acc.getUsertype().equals("SALES")) {
