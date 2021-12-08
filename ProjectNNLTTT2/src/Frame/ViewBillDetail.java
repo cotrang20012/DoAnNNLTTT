@@ -9,6 +9,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
+import database.NhanvienDAO;
 import model.CarModel;
 import model.CustomerModel;
 
@@ -77,6 +78,7 @@ public class ViewBillDetail extends JFrame {
 	 * Create the frame.
 	 */
 	public ViewBillDetail(int idBill, int idSale,int idCustomer, int TongHoaDon) {
+		setTitle("HOÁ ĐƠN CHI TIẾT");
 		this.setIdBill(idBill);
 		this.setIdCustomer(idCustomer);
 		this.setIdSale(idSale);
@@ -171,6 +173,7 @@ public class ViewBillDetail extends JFrame {
 		lblTongHoaDon.setBounds(412, 446, 214, 14);
 		SetDataForFrame();
 		contentPane.add(lblTongHoaDon);
+		textNameSale.setText(NhanvienDAO.getNhanvienName(idSale));
 	}
 	public int getTongHoaDon() {
 		return TongHoaDon;

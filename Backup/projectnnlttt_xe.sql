@@ -33,7 +33,7 @@ CREATE TABLE `xe` (
   `trangthai` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
   `gia` int DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -42,6 +42,7 @@ CREATE TABLE `xe` (
 
 LOCK TABLES `xe` WRITE;
 /*!40000 ALTER TABLE `xe` DISABLE KEYS */;
+INSERT INTO `xe` VALUES (17,'CBR1000-RR-R','Đỏ','Honda','XE 2 BÁNH',1000,'TRUNG QUỐC','ĐÃ BÁN',500000),(18,'Lux 2A','Đen','Vinfast','XE 4 BÁNH',2500,'Việt Nam','ĐÃ BÁN',13500000),(19,'Santa Fe','Trắng','Huyndai','Xe 4 Bánh',2200,'Hàn Quốc','CHƯA BÁN',1350000),(20,'Lux A','Đen','Vinfast','Xe 4 Bánh',2000,'Việt Nam','ĐÃ BÁN',1150000),(21,'Lux SA','Đỏ','Vinfast','Xe 4 Bánh',2000,'Việt Nam','ĐÃ BÁN',1800000),(22,'CBR1000R-RR','Đỏ-Xanh','Honda','Xe 2 Bánh',1000,'Hàn Quốc','CHƯA BÁN',1350000),(23,'Santa Fe','Trắng','Huyndai','Xe 4 Bánh',2200,'Hàn Quốc','CHƯA BÁN',1350000);
 /*!40000 ALTER TABLE `xe` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -54,4 +55,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-11-29 19:11:31
+-- Dump completed on 2021-12-08 22:15:26
