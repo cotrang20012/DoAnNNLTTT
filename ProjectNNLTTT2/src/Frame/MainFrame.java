@@ -28,9 +28,8 @@ public class MainFrame extends JFrame {
 	private static NhanvienDAO nvDAO = new NhanvienDAO();
 	private static NhanVien nv;
 	
-	public MainFrame(Account acc) {
-		Global.acc = acc;
-		Global.nv =  nvDAO.getNhanVien(acc.getUsername());
+	public MainFrame() {
+		Global.nv =  nvDAO.getNhanVien(Global.acc.getUsername());
 		setTitle("QUẢN LÝ CỬA HÀNG");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 680, 472);
@@ -64,7 +63,7 @@ public class MainFrame extends JFrame {
 		});
 		btnManager.setBounds(10, 11, 115, 47);
 		contentPane.add(btnManager);
-		if (acc.getUsertype() == "SALES") btnManager.setEnabled(false);
+		if (Global.acc.getUsertype() == "SALES") btnManager.setEnabled(false);
 		
 		JButton btnCar = new JButton("DANH SÁCH XE");
 		btnCar.addMouseListener(new MouseAdapter() {
@@ -148,7 +147,7 @@ public class MainFrame extends JFrame {
 				EventQueue.invokeLater(new Runnable() {
 					public void run() {
 						try {
-							ChangePasswordFrame frame = new ChangePasswordFrame(acc);
+							ChangePasswordFrame frame = new ChangePasswordFrame();
 							frame.setVisible(true);
 						} catch (Exception e) {
 							e.printStackTrace();

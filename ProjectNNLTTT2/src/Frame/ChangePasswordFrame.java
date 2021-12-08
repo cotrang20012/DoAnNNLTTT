@@ -9,6 +9,7 @@ import javax.swing.border.EmptyBorder;
 
 import database.AccountDAO;
 import model.Account;
+import model.Global;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -34,7 +35,7 @@ public class ChangePasswordFrame extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public ChangePasswordFrame(Account acc) {
+	public ChangePasswordFrame() {
 		setTitle("ĐỔI MẬT KHẨU");
 		setBounds(100, 100, 381, 176);
 		contentPane = new JPanel();
@@ -72,11 +73,11 @@ public class ChangePasswordFrame extends JFrame {
 		JButton btnChangePass = new JButton("ĐỔI MẬT KHẨU");
 		btnChangePass.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (acc.getPassword() == textCurPass.getText()) {
-					if (textNewPass.getText() == textRepeatPass.getText() && textNewPass.getText().trim().length() != 0) {
+				if (Global.acc.getPassword().equals(textCurPass.getText())) {
+					if (textNewPass.getText().equals(textRepeatPass.getText()) && textNewPass.getText().trim().length() != 0) {
 						AccountDAO accountDAO = new AccountDAO();
-						acc.setPassword(textNewPass.getText());
-						if (accountDAO.Update(acc)) JOptionPane.showMessageDialog(null, "Cập nhật thành công");
+						Global.acc.setPassword(textNewPass.getText());
+						if (accountDAO.Update(Global.acc)) JOptionPane.showMessageDialog(null, "Cập nhật thành công");
 						else JOptionPane.showMessageDialog(null, "Cập nhật thất bại");
 					}
 					else JOptionPane.showMessageDialog(null, "Vui lòng kiểm tra lại password mới");

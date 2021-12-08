@@ -9,6 +9,7 @@ import javax.swing.border.EmptyBorder;
 
 import database.AccountDAO;
 import model.Account;
+import model.Global;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -94,10 +95,11 @@ public class LoginFrame extends JFrame {
 						acc.setUsertype("SALES");
 					try {
 						if (accDao.checkLogin(acc) == 1) {
+							Global.acc = new Account(textUser.getText(),textPassword.getText(),rdbtnManager.isSelected()? "QUANLY":"SALES");
 								EventQueue.invokeLater(new Runnable() {
 									public void run() {
 										try {
-											MainFrame frame = new MainFrame(new Account(textUser.getText(),textPassword.getText(),rdbtnManager.isSelected()? "QUANLY":"SALES"));
+											MainFrame frame = new MainFrame();
 											frame.setVisible(true);
 										} catch (Exception e) {
 											e.printStackTrace();

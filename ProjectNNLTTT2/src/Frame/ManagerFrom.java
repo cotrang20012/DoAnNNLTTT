@@ -140,19 +140,20 @@ public class ManagerFrom extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				int row =  tableAccount.getSelectedRow();
 				EventQueue.invokeLater(new Runnable() {
+					
 					public void run() {
 						try {
 							if (row != -1) {
-								ChangePasswordFrame frame = new ChangePasswordFrame(
-										listAcc.get(row));
-								frame.setVisible(true);
+							
+							ChangePasswordManager frame = new ChangePasswordManager(listAcc.get(row));
+							frame.setVisible(true);
 							}
 						} catch (Exception e) {
 							e.printStackTrace();
 						}
 					}
 				});
-				CusTable();
+				
 			}
 		});
 		btnUpdateAccount.setBounds(436, 11, 126, 51);
@@ -161,7 +162,7 @@ public class ManagerFrom extends JFrame {
 		CusTable();
 	}
 
-	private static void CusTable() {
+	public static void CusTable() {
 		listAcc = accDAO.getAccounts();
 		listNV = nvDAO.getNV();
 		DefaultTableModel dtmAcc = new DefaultTableModel();

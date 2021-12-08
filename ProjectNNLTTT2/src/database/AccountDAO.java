@@ -93,4 +93,18 @@ public class AccountDAO {
 			return false;
 		}
 	}
+	public boolean UpdateType(String username, String usertype) {
+		try {
+			conn = MyDB.getConnection();
+			PreparedStatement stmt = conn.prepareStatement("UPDATE account SET usertype = ? WHERE username = ?");
+			stmt.setString(1, usertype);
+			stmt.setString(2, username);
+			stmt.execute();
+			conn.close();
+			return true;
+		} catch (Exception e) {
+			MyDB.closeConnection(conn);
+			return false;
+		}
+	}
 }

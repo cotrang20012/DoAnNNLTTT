@@ -7,10 +7,14 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import database.AccountDAO;
 import database.NhanvienDAO;
+import model.Account;
 import model.NhanVien;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.JTextPane;
 import javax.swing.JTextArea;
@@ -99,7 +103,10 @@ public class UpdateInfoManager extends JFrame {
 				if (rdbtnManager.isSelected()) nv.setChucvu("QUANLY");
 				else nv.setChucvu("SALES");
 				NhanvienDAO nvDAO = new NhanvienDAO();
-				nvDAO.UpdateNV(nv);
+				AccountDAO accountDAO = new AccountDAO();
+				if (nvDAO.UpdateNV(nv) && accountDAO.UpdateType(nv.getCmnd(), nv.getChucvu()))
+						JOptionPane.showMessageDialog(null, "Cập nhật thành công");
+				ManagerFrom.CusTable();
 			}
 		});
 		btnUpdate.setBounds(35, 208, 89, 23);
@@ -113,5 +120,11 @@ public class UpdateInfoManager extends JFrame {
 		});
 		btnExit.setBounds(172, 208, 89, 23);
 		contentPane.add(btnExit);
+		textTen.setText(nv.getTen());
+		textDiachi.setText(nv.getDiachi());
+		textSDT.setText(nv.getSdt());
+		textLuong.setText(String.valueOf(nv.getLuong()));
+		if (nv.getChucvu().equals("QUANLY")) rdbtnManager.setSelected(true);
+		else rdbtnSales.setSelected(true);
 	}
 }
