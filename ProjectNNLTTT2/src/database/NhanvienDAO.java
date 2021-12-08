@@ -151,21 +151,4 @@ public class NhanvienDAO {
 			return false;
 		}
 	}
-	
-	public static String getNhanvienName (int id) {
-		String name ="";
-		try {
-			Connection conn1 = MyDB.getConnection();
-			PreparedStatement stmt = conn1.prepareStatement("SELECT * FROM nhanvien WHERE id = ?");
-			stmt.setInt(1, id);
-			ResultSet rs = stmt.executeQuery();
-			rs.next();
-			name = new String(rs.getString("ten"));
-			conn1.close();
-			return name;
-		} catch (Exception e) {
-			e.printStackTrace();
-			return "";
-		}
-	}
 }

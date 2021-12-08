@@ -101,7 +101,7 @@ public class CustomerModel {
 	    MyDB.closeConnection(conn);
 	}
 	
-	public static boolean deleteCust(CustomerModel cust) {
+	public static void deleteCust(CustomerModel cust) {
 		Connection conn = MyDB.getConnection();
 		String deleteQuery = "DELETE FROM khachhang WHERE id = ?";
 	    PreparedStatement pStatement = null;
@@ -110,12 +110,11 @@ public class CustomerModel {
 	    	pStatement.setInt(1, cust.getCustID());;
 	    	
 	    	pStatement.execute();
-	    	return true;
 	    } catch (SQLException e) {
 	    	MyDB.closeConnection(conn);
 			e.printStackTrace();
-			return false;
 		}	    
+	   MyDB.closeConnection(conn);
 	}
 	
 	public static ArrayList<CustomerModel> ViewCustomer() {

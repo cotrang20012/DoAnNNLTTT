@@ -166,7 +166,7 @@ public class InsertCarFrame extends JFrame {
 					JOptionPane.showMessageDialog(contentPane, "Vui lòng nhập đủ thông tin!");	
 				}
 				else{
-				    CarModel car = new CarModel(-1,txt_model.getText(),txt_mauxe.getText(),txt_thuonghieu.getText(),cb_loai.getSelectedItem().toString(),Integer.parseInt(txt_phankhoi.getText()),txt_xuatxu.getText(),"CHƯA BÁN",Integer.parseInt(txt_gia.getText()));
+				    CarModel car = new CarModel(-1,txt_model.getText(),txt_mauxe.getText(),txt_thuonghieu.getText(),cb_loai.getSelectedItem().toString(),Integer.parseInt(txt_phankhoi.getText()),txt_xuatxu.getText(),"CHUA BAN",Integer.parseInt(txt_gia.getText()));
 				    CarModel.insertCar(car);
 				    JOptionPane.showMessageDialog(contentPane, "Nhập thành công!");
 				    clearText();

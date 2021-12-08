@@ -16,31 +16,29 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `billdetail`
+-- Table structure for table `khachhang`
 --
 
-DROP TABLE IF EXISTS `billdetail`;
+DROP TABLE IF EXISTS `khachhang`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `billdetail` (
-  `idbill` int DEFAULT NULL,
-  `idxe` int DEFAULT NULL,
-  `gia` int DEFAULT NULL,
-  KEY `idbill` (`idbill`),
-  KEY `idxe` (`idxe`),
-  CONSTRAINT `billdetail_ibfk_1` FOREIGN KEY (`idbill`) REFERENCES `bill` (`idbill`),
-  CONSTRAINT `billdetail_ibfk_2` FOREIGN KEY (`idxe`) REFERENCES `xe` (`id`)
+CREATE TABLE `khachhang` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `cmnd` varchar(255) DEFAULT NULL,
+  `ten` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `diachi` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `sdt` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `billdetail`
+-- Dumping data for table `khachhang`
 --
 
-LOCK TABLES `billdetail` WRITE;
-/*!40000 ALTER TABLE `billdetail` DISABLE KEYS */;
-INSERT INTO `billdetail` VALUES (15,17,500000),(16,18,13500000),(16,20,1150000),(16,21,1800000);
-/*!40000 ALTER TABLE `billdetail` ENABLE KEYS */;
+LOCK TABLES `khachhang` WRITE;
+/*!40000 ALTER TABLE `khachhang` DISABLE KEYS */;
+/*!40000 ALTER TABLE `khachhang` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -52,4 +50,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-12-08 22:15:26
+-- Dump completed on 2021-11-29 19:11:31
