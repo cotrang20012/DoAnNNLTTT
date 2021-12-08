@@ -16,30 +16,32 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `billdetail`
+-- Table structure for table `nhanvien`
 --
 
-DROP TABLE IF EXISTS `billdetail`;
+DROP TABLE IF EXISTS `nhanvien`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `billdetail` (
-  `idbill` int DEFAULT NULL,
-  `idxe` int DEFAULT NULL,
-  `gia` int DEFAULT NULL,
-  KEY `idbill` (`idbill`),
-  KEY `idxe` (`idxe`),
-  CONSTRAINT `billdetail_ibfk_1` FOREIGN KEY (`idbill`) REFERENCES `bill` (`idbill`),
-  CONSTRAINT `billdetail_ibfk_2` FOREIGN KEY (`idxe`) REFERENCES `xe` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+CREATE TABLE `nhanvien` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `cmnd` varchar(255) DEFAULT NULL,
+  `ten` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `diachi` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `chucvu` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `sdt` varchar(255) DEFAULT NULL,
+  `luong` int DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `billdetail`
+-- Dumping data for table `nhanvien`
 --
 
-LOCK TABLES `billdetail` WRITE;
-/*!40000 ALTER TABLE `billdetail` DISABLE KEYS */;
-/*!40000 ALTER TABLE `billdetail` ENABLE KEYS */;
+LOCK TABLES `nhanvien` WRITE;
+/*!40000 ALTER TABLE `nhanvien` DISABLE KEYS */;
+INSERT INTO `nhanvien` VALUES (8,'0000000001','Nguyễn Phúc An','Đà Nẵng','QUANLY','0928776640',6864500),(9,'0000000000','Phương Linh','TP. Hồ Chí Minh','SALES','090789341',5000000),(10,'0000000002','Bành Đăng Khoa','Quảng Ninh','SALES','0907513694',5000000);
+/*!40000 ALTER TABLE `nhanvien` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -51,4 +53,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-11-29 19:11:30
+-- Dump completed on 2021-12-08 22:15:26
