@@ -58,7 +58,6 @@ public class ManagerFrom extends JFrame {
 						}
 					}
 				});
-				CusTable();
 			}
 		});
 		btnAddEmployee.setBounds(10, 11, 144, 51);
@@ -104,7 +103,6 @@ public class ManagerFrom extends JFrame {
 						}
 					}
 				});
-				CusTable();
 			}
 		});
 		btnUpdateEmployee.setBounds(164, 11, 126, 51);
