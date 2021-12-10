@@ -98,13 +98,13 @@ public class CarFrame extends JFrame {
 		Vector column = new Vector();
 		column.add("ID Xe");
 		column.add("Model Xe");
-		column.add("MÃ u Xe");
-		column.add("ThÆ°Æ¡ng Hiá»‡u");
-		column.add("Loáº¡i");
-		column.add("PhÃ¢n Khá»‘i");
-		column.add("Xuáº¥t Xá»©");
-		column.add("Tráº¡ng ThÃ¡i");
-		column.add("GiÃ¡ Xe");
+		column.add("Mẫu Xe");
+		column.add("Thương Hiệu");
+		column.add("Loại");
+		column.add("Phân Khúc");
+		column.add("Xuất Xứ");
+		column.add("Trạng Thái");
+		column.add("Giá Xe");
 		model.setColumnIdentifiers(column);
 		ArrayList<CarModel> list = lst;
 		for (int i = 0; i < list.size(); i++) {
@@ -137,15 +137,15 @@ public class CarFrame extends JFrame {
 		contentPane.setLayout(null);
 
 		// Initialize button
-		JButton btnAdd = new JButton("TH\u00CAM XE");
+		JButton btnAdd = new JButton("THÊM XE");
 		btnAdd.setBounds(263, 11, 126, 51);
 		contentPane.add(btnAdd);
 
-		JButton btnUpdate = new JButton("S\u1EECA XE");
+		JButton btnUpdate = new JButton("SỬA XE");
 		btnUpdate.setBounds(399, 11, 126, 51);
 		contentPane.add(btnUpdate);
 
-		JButton btnDelete = new JButton("X\u00D3A XE");
+		JButton btnDelete = new JButton("XOÁ XE");
 		btnDelete.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnDelete.setForeground(Color.RED);
 		btnDelete.setBounds(535, 11, 126, 51);
@@ -163,7 +163,7 @@ public class CarFrame extends JFrame {
 		};
 		scrollPane.setViewportView(tableCar);
 
-		JLabel lbl_xuatxu = new JLabel("Xuáº¥t xá»©:");
+		JLabel lbl_xuatxu = new JLabel("Xuất Xứ:");
 		lbl_xuatxu.setBounds(723, 107, 54, 14);
 		contentPane.add(lbl_xuatxu);
 
@@ -171,27 +171,27 @@ public class CarFrame extends JFrame {
 		lbl_model.setBounds(723, 137, 70, 14);
 		contentPane.add(lbl_model);
 
-		JLabel lbl_mauxe = new JLabel("MÃ u Xe:");
+		JLabel lbl_mauxe = new JLabel("Mẫu Xe:");
 		lbl_mauxe.setBounds(723, 167, 70, 14);
 		contentPane.add(lbl_mauxe);
 
-		JLabel lbl_thuonghieu = new JLabel("ThÆ°Æ¡ng Hiá»‡u:");
+		JLabel lbl_thuonghieu = new JLabel("Thương Hiệu:");
 		lbl_thuonghieu.setBounds(723, 197, 80, 14);
 		contentPane.add(lbl_thuonghieu);
 
-		JLabel lbl_loai = new JLabel("Loáº¡i Xe:");
+		JLabel lbl_loai = new JLabel("Loại Xe:");
 		lbl_loai.setBounds(723, 227, 70, 14);
 		contentPane.add(lbl_loai);
 
-		JLabel lbl_phankhoi = new JLabel("PhÃ¢n Khá»‘i:");
+		JLabel lbl_phankhoi = new JLabel("Phân Khối:");
 		lbl_phankhoi.setBounds(723, 257, 70, 14);
 		contentPane.add(lbl_phankhoi);
 
-		JLabel lbl_trangthai = new JLabel("Tráº¡ng ThÃ¡i:");
+		JLabel lbl_trangthai = new JLabel("Trạng Thái:");
 		lbl_trangthai.setBounds(723, 287, 70, 14);
 		contentPane.add(lbl_trangthai);
 
-		JLabel lbl_gia = new JLabel("GiÃ¡ Xe:");
+		JLabel lbl_gia = new JLabel("Giá Xe:");
 		lbl_gia.setBounds(723, 317, 70, 14);
 		contentPane.add(lbl_gia);
 
@@ -235,7 +235,7 @@ public class CarFrame extends JFrame {
 		txt_gia.setBounds(803, 314, 170, 20);
 		contentPane.add(txt_gia);
 
-		JButton btnExit = new JButton("THO\u00C1T");
+		JButton btnExit = new JButton("THOÁT");
 		btnExit.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnExit.setForeground(Color.RED);
 		btnExit.setBounds(845, 370, 126, 51);
@@ -265,7 +265,7 @@ public class CarFrame extends JFrame {
 		panelSearch.add(txt_searchInfo);
 		txt_searchInfo.setColumns(10);
 		
-		JLabel lblSearchTitle = new JLabel("T\u00ECm ki\u1EBFm th\u00F4ng tin xe");
+		JLabel lblSearchTitle = new JLabel("Tìm kiếm thông tin xe");
 		lblSearchTitle.setBounds(10, 11, 126, 14);
 		panelSearch.add(lblSearchTitle);
 		
@@ -291,19 +291,19 @@ public class CarFrame extends JFrame {
 		txt_GiaXeMax.setBounds(121, 189, 60, 20);
 		panelSearch.add(txt_GiaXeMax);
 		
-		JLabel lblSearchLoaiXe = new JLabel("Lo\u1EA1i Xe:");
+		JLabel lblSearchLoaiXe = new JLabel("Loại Xe:");
 		lblSearchLoaiXe.setBounds(10, 87, 46, 14);
 		panelSearch.add(lblSearchLoaiXe);
 		
-		JLabel lblSearchTrangThai = new JLabel("Tr\u1EA1ng Th\u00E1i:");
+		JLabel lblSearchTrangThai = new JLabel("Thương Hiệu:");
 		lblSearchTrangThai.setBounds(10, 120, 62, 14);
 		panelSearch.add(lblSearchTrangThai);
 		
-		JLabel lblSearchGiaXe = new JLabel("Kho\u1EA3ng Gi\u00E1 Xe:");
+		JLabel lblSearchGiaXe = new JLabel("Khoản Giá Xe:");
 		lblSearchGiaXe.setBounds(10, 154, 99, 14);
 		panelSearch.add(lblSearchGiaXe);
 		
-		JLabel lbl = new JLabel("\u0110\u1EBFn");
+		JLabel lbl = new JLabel("ĐẾN");
 		lbl.setBounds(82, 192, 29, 14);
 		panelSearch.add(lbl);
 		
@@ -317,7 +317,7 @@ public class CarFrame extends JFrame {
 		txt_searchPhanKhoi.setBounds(75, 233, 106, 20);
 		panelSearch.add(txt_searchPhanKhoi);
 		
-		JLabel lblSearchPhanKhoi = new JLabel("Ph\u00E2n Kh\u1ED1i:");
+		JLabel lblSearchPhanKhoi = new JLabel("Phân khối:");
 		lblSearchPhanKhoi.setBounds(10, 236, 62, 14);
 		panelSearch.add(lblSearchPhanKhoi);
 		
@@ -343,7 +343,7 @@ public class CarFrame extends JFrame {
 		btnUpdate.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (txt_id.getText().equals("")) {
-					JOptionPane.showMessageDialog(contentPane, "Vui lÃ²ng chá»�n xe Ä‘á»ƒ cáº­p nháº­t!");
+					JOptionPane.showMessageDialog(contentPane, "Vui lòng chọn xe trước khi cập nhật");
 				} else {
 					if(txt_gia.getText().equals("")|| txt_phankhoi.getText().equals("")|| txt_loai.getText().equals("")|| txt_mauxe.getText().equals("")|| txt_model.getText().equals("")|| txt_thuonghieu.getText().equals("")|| txt_trangthai.getText().equals("")||txt_xuatxu.getText().equals("")) {
 						
@@ -351,7 +351,7 @@ public class CarFrame extends JFrame {
 					else {
 						CarModel car = getCar();
 						CarModel.updateCar(car);
-						JOptionPane.showMessageDialog(contentPane, "Cáº­p nháº­t thÃ nh cÃ´ng!");
+						JOptionPane.showMessageDialog(contentPane, "Cập Nhật Thành Công");
 						loadData(CarModel.viewAllCar());
 					}
 				}
@@ -361,17 +361,17 @@ public class CarFrame extends JFrame {
 		btnDelete.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (txt_id.getText().equals("")) {
-					JOptionPane.showMessageDialog(contentPane, "Vui lÃ²ng chá»�n xe Ä‘á»ƒ xÃ³a!");
+					JOptionPane.showMessageDialog(contentPane, "Vui lòng chọn xe trước khi xoá!");
 				} else {
-					int delConfirmed = JOptionPane.showConfirmDialog(null, "Báº¡n cÃ³ cháº¯c cháº¯n muá»‘n xÃ³a khÃ´ng?");
+					int delConfirmed = JOptionPane.showConfirmDialog(null, "Bạn có chắc xoá xe này ?!!");
 					if (delConfirmed == 0) {
 						CarModel car = getCar();
 						if (CarModel.deleteCar(car)) {
-							JOptionPane.showMessageDialog(contentPane, "XÃ³a thÃ nh cÃ´ng!");
+							JOptionPane.showMessageDialog(contentPane, "Xoá Thành Công");
 							loadData(CarModel.viewAllCar());
 						}
 						else {
-							JOptionPane.showMessageDialog(contentPane, "XÃ³a khÃ´ng thÃ nh cÃ´ng!");
+							JOptionPane.showMessageDialog(contentPane, "Xoá Không Thành Công!!");
 						}
 					}
 				}

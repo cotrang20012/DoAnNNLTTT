@@ -26,13 +26,14 @@ CREATE TABLE `bill` (
   `idbill` int NOT NULL AUTO_INCREMENT,
   `idsale` int DEFAULT NULL,
   `idkhachhang` int DEFAULT NULL,
-  `thonghoadon` int DEFAULT NULL,
+  `tonghoadon` int DEFAULT NULL,
+  `date` date DEFAULT NULL,
   PRIMARY KEY (`idbill`),
   KEY `idsale` (`idsale`),
   KEY `idkhachhang` (`idkhachhang`),
   CONSTRAINT `bill_ibfk_1` FOREIGN KEY (`idsale`) REFERENCES `nhanvien` (`id`),
   CONSTRAINT `bill_ibfk_2` FOREIGN KEY (`idkhachhang`) REFERENCES `khachhang` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -41,6 +42,7 @@ CREATE TABLE `bill` (
 
 LOCK TABLES `bill` WRITE;
 /*!40000 ALTER TABLE `bill` DISABLE KEYS */;
+INSERT INTO `bill` VALUES (15,8,1,550000,'2021-12-07'),(16,8,2,18095000,'2021-12-08');
 /*!40000 ALTER TABLE `bill` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -53,4 +55,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-11-29 19:11:30
+-- Dump completed on 2021-12-09  0:13:21
