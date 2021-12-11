@@ -9,7 +9,6 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
 import database.NhanvienDAO;
-import model.Account;
 import model.CarModel;
 import model.Global;
 import model.NhanVien;

@@ -8,10 +8,17 @@ public class NhanVien {
 	private String chucvu;
 	private String sdt;
 	private int luong;
+	private String password;
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
+	}
 	public NhanVien() {
 		
 	}
-	public NhanVien(int id,String cmnd, String ten,String diachi,String chucvu,String sdt,int luong) {
+	public NhanVien(int id,String cmnd, String ten,String diachi,String chucvu,String sdt,int luong,String password) {
 		this.id = id;
 		this.cmnd = cmnd;
 		this.ten = ten;
@@ -19,6 +26,7 @@ public class NhanVien {
 		this.chucvu = chucvu;
 		this.sdt =sdt;
 		this.luong=luong;
+		this.password = password;
 	}
 	public int getId() {
 		return id;

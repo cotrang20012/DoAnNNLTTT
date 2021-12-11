@@ -3,6 +3,7 @@ package database;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import model.NhanVien;
@@ -29,6 +30,7 @@ public class NhanvienDAO {
 				nv.setChucvu(rs.getString("chucvu"));
 				nv.setSdt(rs.getString("sdt"));
 				nv.setLuong(rs.getInt("luong"));
+				nv.setPassword(rs.getString("password"));
 				list.add(nv);
 			}
 			conn.close();
@@ -42,14 +44,15 @@ public class NhanvienDAO {
 	public boolean UpdateNV(NhanVien nv) {
 		try {
 			conn = MyDB.getConnection();
-			PreparedStatement stmt = conn
-					.prepareStatement("UPDATE nhanvien set diachi = ?,sdt=?,ten =?,chucvu=?,luong=? where id = ?");
+			PreparedStatement stmt = conn.prepareStatement(
+					"UPDATE nhanvien set diachi = ?,sdt=?,ten =?,chucvu=?,luong=?,password =? where id = ?");
 			stmt.setString(1, nv.getDiachi());
 			stmt.setString(2, nv.getSdt());
 			stmt.setString(3, nv.getTen());
 			stmt.setString(4, nv.getChucvu());
 			stmt.setInt(5, nv.getLuong());
-			stmt.setInt(6, nv.getId());
+			stmt.setString(6, nv.getPassword());
+			stmt.setInt(7, nv.getId());
 			stmt.execute();
 			conn.close();
 			return true;
@@ -62,7 +65,7 @@ public class NhanvienDAO {
 	public boolean Insert(NhanVien nv) {
 		try {
 			conn = MyDB.getConnection();
-			PreparedStatement stmt = conn.prepareStatement("INSERT INTO nhanvien VALUES(?,?,?,?,?,?,?)");
+			PreparedStatement stmt = conn.prepareStatement("INSERT INTO nhanvien VALUES(?,?,?,?,?,?,?,?)");
 			stmt.setString(1, null);
 			stmt.setString(2, nv.getCmnd());
 			stmt.setString(3, nv.getTen());
@@ -70,6 +73,7 @@ public class NhanvienDAO {
 			stmt.setString(5, nv.getChucvu());
 			stmt.setString(6, nv.getSdt());
 			stmt.setInt(7, nv.getLuong());
+			stmt.setString(8, nv.getPassword());
 			stmt.execute();
 			conn.close();
 			return true;
@@ -125,6 +129,7 @@ public class NhanvienDAO {
 				nv.setChucvu(rs.getString("chucvu"));
 				nv.setSdt(rs.getString("sdt"));
 				nv.setLuong(rs.getInt("luong"));
+				nv.setPassword(rs.getString("password"));
 				break;
 			}
 			conn.close();
@@ -134,13 +139,12 @@ public class NhanvienDAO {
 			return null;
 		}
 	}
-	
-	public static boolean updateNhanVienSalary(int id,int TongHoaDon) {
-		int HoaHong = TongHoaDon*10/100;
+
+	public static boolean updateNhanVienSalary(int id, int TongHoaDon) {
+		int HoaHong = TongHoaDon * 10 / 100;
 		Connection conn = MyDB.getConnection();
 		try {
-			PreparedStatement stmt = conn
-					.prepareStatement("UPDATE nhanvien set luong = luong + ? where id = ?");
+			PreparedStatement stmt = conn.prepareStatement("UPDATE nhanvien set luong = luong + ? where id = ?");
 			stmt.setInt(1, HoaHong);
 			stmt.setInt(2, id);
 			stmt.execute();
@@ -149,6 +153,34 @@ public class NhanvienDAO {
 		} catch (Exception e) {
 			MyDB.closeConnection(conn);
 			return false;
+		}
+	}
+
+	public NhanVien checkLogin(NhanVien nv) throws SQLException {
+		try {
+			conn = MyDB.getConnection();
+			PreparedStatement stmt = conn.prepareStatement("SELECT * FROM nhanvien WHERE cmnd = ? and password=? and chucvu=?");
+			stmt.setString(1, nv.getCmnd());
+			stmt.setString(2, nv.getPassword());
+			stmt.setString(3, nv.getChucvu());
+			ResultSet rs = stmt.executeQuery();
+			while (rs.next()) {
+				nv.setId(rs.getInt("id"));
+				nv.setCmnd(rs.getString("cmnd"));
+				nv.setTen(rs.getString("ten"));
+				nv.setDiachi(rs.getString("diachi"));
+				nv.setChucvu(rs.getString("chucvu"));
+				nv.setSdt(rs.getString("sdt"));
+				nv.setLuong(rs.getInt("luong"));
+				nv.setPassword(rs.getString("password"));
+				break;
+			}
+			conn.close();
+			return nv;
+		} catch (Exception e) {
+			e.printStackTrace();
+			conn.close();
+			return null;
 		}
 	}
 }

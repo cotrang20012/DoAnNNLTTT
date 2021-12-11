@@ -7,9 +7,11 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import database.AccountDAO;
-import model.Account;
+
+import database.NhanvienDAO;
+
 import model.Global;
+import model.NhanVien;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -26,8 +28,8 @@ public class LoginFrame extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textUser;
-	AccountDAO accDao = new AccountDAO();
-	Account acc = new Account();
+	NhanvienDAO nhanvienDAO = new NhanvienDAO();
+	NhanVien nv = new NhanVien(); 
 	private JPasswordField textPassword;
 
 	public LoginFrame() {
@@ -86,15 +88,19 @@ public class LoginFrame extends JFrame {
 					JOptionPane.showMessageDialog(null, "Username hoặc password còn trống", "Warning",
 							JOptionPane.INFORMATION_MESSAGE);
 				else {
-					acc.setUsername(textUser.getText().trim());
-					acc.setPassword(textPassword.getText().trim());
+					System.out.println(textUser.getText().trim());
+					System.out.println(textPassword.getText().trim());
+					nv.setCmnd(textUser.getText().trim());
+					nv.setPassword(textPassword.getText().trim());
 					if (rdbtnManager.isSelected() == true)
-						acc.setUsertype("QUANLY");
+						nv.setChucvu("QUANLY");
 					else
-						acc.setUsertype("SALES");
+						nv.setChucvu("SALES");
 					try {
-						if (accDao.checkLogin(acc) == 1) {
-							Global.acc = new Account(textUser.getText(),textPassword.getText(),rdbtnManager.isSelected()? "QUANLY":"SALES");
+						nv = nhanvienDAO.checkLogin(nv);
+						System.out.print(nv);
+						if (nv != null) {
+							Global.nv = nv;
 								EventQueue.invokeLater(new Runnable() {
 									public void run() {
 										try {

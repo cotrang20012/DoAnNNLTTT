@@ -7,9 +7,9 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import database.AccountDAO;
+
 import database.NhanvienDAO;
-import model.Account;
+
 import model.NhanVien;
 
 import javax.swing.JLabel;
@@ -29,11 +29,13 @@ public class InsertEmployee extends JFrame {
 	private JTextField textAddress;
 	private JTextField textPhone;
 	private JTextField textSalary;
+	private JTextField textCMND;
+	private JTextField textPwd;
 
 	public InsertEmployee() {
 		setTitle("THÊM THÔNG TIN NHÂN VIÊN");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 319, 267);
+		setBounds(100, 100, 319, 301);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -62,12 +64,12 @@ public class InsertEmployee extends JFrame {
 		ButtonGroup bg = new ButtonGroup();
 
 		JRadioButton rdbtnManager = new JRadioButton("Manager");
-		rdbtnManager.setBounds(49, 148, 109, 23);
+		rdbtnManager.setBounds(55, 191, 109, 23);
 		contentPane.add(rdbtnManager);
 
 		JRadioButton rdbtnSales = new JRadioButton("Sales");
 		rdbtnSales.setSelected(true);
-		rdbtnSales.setBounds(183, 148, 109, 23);
+		rdbtnSales.setBounds(189, 191, 109, 23);
 		contentPane.add(rdbtnSales);
 		bg.add(rdbtnSales);
 		bg.add(rdbtnManager);
@@ -96,6 +98,23 @@ public class InsertEmployee extends JFrame {
 		textSalary.setBounds(135, 108, 133, 20);
 		contentPane.add(textSalary);
 		textSalary.setColumns(10);
+		JLabel lblNewLabel_4_1 = new JLabel("CMND/CCCD");
+		lblNewLabel_4_1.setBounds(32, 138, 93, 14);
+		contentPane.add(lblNewLabel_4_1);
+		
+		textCMND = new JTextField();
+		textCMND.setColumns(10);
+		textCMND.setBounds(135, 135, 133, 20);
+		contentPane.add(textCMND);
+		
+		JLabel Password = new JLabel("Password");
+		Password.setBounds(32, 166, 93, 14);
+		contentPane.add(Password);
+		
+		textPwd = new JTextField();
+		textPwd.setColumns(10);
+		textPwd.setBounds(135, 163, 133, 20);
+		contentPane.add(textPwd);
 
 		JButton btnAdd = new JButton("THÊM ");
 		btnAdd.addActionListener(new ActionListener() {
@@ -108,23 +127,19 @@ public class InsertEmployee extends JFrame {
 					else {
 						NhanVien nv = new NhanVien();
 						NhanvienDAO nvDAO = new NhanvienDAO();
-						AccountDAO accDAO = new AccountDAO();
-						Account acc = new Account();
 						nv.setCmnd(textSID.getText());
 						nv.setTen(textName.getText());
 						nv.setSdt(textPhone.getText());
 						nv.setDiachi(textAddress.getText());
 						nv.setLuong(Integer.valueOf(textSalary.getText()));
-						acc.setUsername(textSID.getText());
-						acc.setPassword("1");
+						if (textPwd.getText().trim().length() == 0) nv.setPassword("1");
+						else nv.setPassword(textPwd.getText());
 						if (rdbtnManager.isSelected()) {
 							nv.setChucvu("QUANLY");
-							acc.setUsertype("QUANLY");
 						} else {
 							nv.setChucvu("SALES");
-							acc.setUsertype("SALES");
 						}
-						if (accDAO.Insert(acc) && nvDAO.Insert(nv)) {
+						if (nvDAO.Insert(nv)) {
 							JOptionPane.showMessageDialog(null, "Thêm nhân viên thành công");
 							ManagerFrom.CusTable();
 						} else
@@ -135,7 +150,7 @@ public class InsertEmployee extends JFrame {
 				}
 			}
 		});
-		btnAdd.setBounds(179, 191, 89, 23);
+		btnAdd.setBounds(185, 234, 89, 23);
 		contentPane.add(btnAdd);
 
 		JButton btnExit = new JButton("THOÁT");
@@ -144,7 +159,9 @@ public class InsertEmployee extends JFrame {
 				dispose();
 			}
 		});
-		btnExit.setBounds(36, 191, 89, 23);
+		btnExit.setBounds(42, 234, 89, 23);
 		contentPane.add(btnExit);
+		
+		
 	}
 }
