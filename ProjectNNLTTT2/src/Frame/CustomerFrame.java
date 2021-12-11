@@ -49,6 +49,7 @@ public class CustomerFrame extends JFrame {
 	private JLabel lbl_id;
 	private DefaultTableModel model;
 	private JButton btnReload;
+	private JLabel lbl_title;
 	/**
 	 * Launch the application.
 	 */
@@ -79,11 +80,11 @@ public class CustomerFrame extends JFrame {
 		model = new DefaultTableModel();
 		//set column headers
 		Vector column = new Vector();
-		column.add("ID Khách Hàng");
-		column.add("Tên Khách Hàng");
+		column.add("ID KhÃ¡ch HÃ ng");
+		column.add("TÃªn KhÃ¡ch HÃ ng");
 		column.add("CMND/CCCD");
-		column.add("Địa Chỉ");
-		column.add("Số Điện Thoại");
+		column.add("Ä�á»‹a Chá»‰");
+		column.add("Sá»‘ Ä�iá»‡n Thoáº¡i");
 		model.setColumnIdentifiers(column);
 		ArrayList<CustomerModel> list = CustomerModel.ViewCustomer();
         for (int i = 0; i < list.size(); i++) {
@@ -103,7 +104,7 @@ public class CustomerFrame extends JFrame {
 	 * Create the frame.
 	 */
 	public CustomerFrame() {
-		setTitle("QUẢN LÝ KHÁCH HÀNG");
+		setTitle("QUáº¢N LÃ� KHÃ�CH HÃ€NG");
 		setBounds(100, 100, 796, 471);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -111,7 +112,7 @@ public class CustomerFrame extends JFrame {
 		contentPane.setLayout(null);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 73, 514, 348);
+		scrollPane.setBounds(10, 137, 604, 284);
 		contentPane.add(scrollPane);
 		
 		tableCustomer = new JTable(){
@@ -122,17 +123,17 @@ public class CustomerFrame extends JFrame {
 		scrollPane.setViewportView(tableCustomer);
 		
 		btnAdd = new JButton("TH\u00CAM KH\u00C1CH H\u00C0NG");
-		btnAdd.setBounds(10, 11, 146, 51);
+		btnAdd.setBounds(624, 246, 146, 51);
 		contentPane.add(btnAdd);
 		
 		btnUpdate = new JButton("S\u1EECA KH\u00C1CH H\u00C0NG");		
-		btnUpdate.setBounds(166, 11, 126, 51);
+		btnUpdate.setBounds(624, 308, 146, 51);
 		contentPane.add(btnUpdate);
 		
 		btnDelete = new JButton("X\u00D3A KH\u00C1CH H\u00C0NG");
 		btnDelete.setForeground(Color.RED);
 		btnDelete.setFont(new Font("Tahoma", Font.BOLD, 11));
-		btnDelete.setBounds(302, 11, 140, 51);
+		btnDelete.setBounds(624, 370, 146, 51);
 		contentPane.add(btnDelete);
 		
 		btnExit = new JButton("THO\u00C1T");
@@ -144,58 +145,62 @@ public class CustomerFrame extends JFrame {
 		});
 		btnExit.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnExit.setForeground(Color.RED);
-		btnExit.setBounds(644, 370, 126, 51);
+		btnExit.setBounds(644, 11, 126, 51);
 		contentPane.add(btnExit);
 		
-		lbl_tenkh = new JLabel("TÊN KHÁCH HÀNG:");
-		lbl_tenkh.setBounds(534, 131, 93, 14);
+		lbl_tenkh = new JLabel("TÃŠN KHÃ�CH HÃ€NG:");
+		lbl_tenkh.setBounds(54, 73, 93, 14);
 		contentPane.add(lbl_tenkh);
 		
 		lbl_cmndcccd = new JLabel("CMND/CCCD:");
-		lbl_cmndcccd.setBounds(534, 156, 93, 14);
+		lbl_cmndcccd.setBounds(54, 98, 93, 14);
 		contentPane.add(lbl_cmndcccd);
 		
-		lbl_diachi = new JLabel("ĐỊA CHỈ:");
-		lbl_diachi.setBounds(534, 181, 93, 14);
+		lbl_diachi = new JLabel("Ä�á»ŠA CHá»ˆ:");
+		lbl_diachi.setBounds(363, 49, 93, 14);
 		contentPane.add(lbl_diachi);
 		
-		lbl_sodienthoai = new JLabel("SỐ ĐIỆN THOẠI:");
-		lbl_sodienthoai.setBounds(534, 206, 93, 14);
+		lbl_sodienthoai = new JLabel("Sá»� Ä�Iá»†N THOáº I:");
+		lbl_sodienthoai.setBounds(363, 74, 93, 14);
 		contentPane.add(lbl_sodienthoai);
 		
 		txt_name = new JTextField();
 		txt_name.setColumns(10);
-		txt_name.setBounds(637, 128, 133, 20);
+		txt_name.setBounds(157, 70, 133, 20);
 		contentPane.add(txt_name);
 		
 		txt_cmnd = new JTextField();
 		txt_cmnd.setColumns(10);
-		txt_cmnd.setBounds(637, 153, 133, 20);
+		txt_cmnd.setBounds(157, 95, 133, 20);
 		contentPane.add(txt_cmnd);
 		
 		txt_addr = new JTextField();
 		txt_addr.setColumns(10);
-		txt_addr.setBounds(637, 178, 133, 20);
+		txt_addr.setBounds(466, 46, 133, 20);
 		contentPane.add(txt_addr);
 		
 		txt_phone = new JTextField();
 		txt_phone.setColumns(10);
-		txt_phone.setBounds(637, 203, 133, 20);
+		txt_phone.setBounds(466, 71, 133, 20);
 		contentPane.add(txt_phone);
 		
 		txt_id = new JTextField();
 		txt_id.setEnabled(false);
 		txt_id.setColumns(10);
-		txt_id.setBounds(637, 104, 133, 20);
+		txt_id.setBounds(157, 46, 133, 20);
 		contentPane.add(txt_id);
 		
-		lbl_id = new JLabel("ID KHÁCH HÀNG:");
-		lbl_id.setBounds(534, 107, 93, 14);
+		lbl_id = new JLabel("ID KHÃ�CH HÃ€NG:");
+		lbl_id.setBounds(54, 49, 93, 14);
 		contentPane.add(lbl_id);
 		
 		btnReload = new JButton("RELOAD");
-		btnReload.setBounds(644, 11, 126, 51);
+		btnReload.setBounds(624, 184, 146, 51);
 		contentPane.add(btnReload);
+		
+		lbl_title = new JLabel("TH\u00D4NG TIN KH\u00C1CH H\u00C0NG:");
+		lbl_title.setBounds(10, 11, 133, 14);
+		contentPane.add(lbl_title);
 		loadData();
 		//add events
 		btnAdd.addActionListener(new ActionListener() {
@@ -212,17 +217,17 @@ public class CustomerFrame extends JFrame {
 		btnUpdate.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(txt_id.getText().equals("")){
-					JOptionPane.showMessageDialog(contentPane, "Vui lòng chọn KH để cập nhật!");	
+					JOptionPane.showMessageDialog(contentPane, "Vui lÃ²ng chá»�n KH Ä‘á»ƒ cáº­p nháº­t!");	
 				}
 				else {
 					if(txt_id.getText().equals("") || txt_name.getText().equals("") || txt_cmnd.getText().equals("") || txt_addr.getText().equals("") || txt_phone.getText().equals("")) {
-						JOptionPane.showMessageDialog(contentPane, "Vui lòng điền đầy đủ thông tin!");
+						JOptionPane.showMessageDialog(contentPane, "Vui lÃ²ng Ä‘iá»�n Ä‘áº§y Ä‘á»§ thÃ´ng tin!");
 						loadData();
 					}
 					else {
 						CustomerModel cust = getCust();
 						CustomerModel.updateCust(cust);
-						JOptionPane.showMessageDialog(contentPane, "Cập nhật thành công!");
+						JOptionPane.showMessageDialog(contentPane, "Cáº­p nháº­t thÃ nh cÃ´ng!");
 						loadData();
 					}
 				}	
@@ -232,14 +237,14 @@ public class CustomerFrame extends JFrame {
 		btnDelete.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(txt_id.getText().equals("")) {
-					JOptionPane.showMessageDialog(contentPane, "Vui lòng chọn KH để xóa!");	
+					JOptionPane.showMessageDialog(contentPane, "Vui lÃ²ng chá»�n KH Ä‘á»ƒ xÃ³a!");	
 				}
 				else {
-					int delConfirmed = JOptionPane.showConfirmDialog(null, "Bạn có chắc chắn muốn xóa không?");
+					int delConfirmed = JOptionPane.showConfirmDialog(null, "Báº¡n cÃ³ cháº¯c cháº¯n muá»‘n xÃ³a khÃ´ng?");
 					if (delConfirmed == 0) {
 						CustomerModel cust = getCust();
 						CustomerModel.deleteCust(cust);
-						JOptionPane.showMessageDialog(contentPane, "Xóa thành công!");
+						JOptionPane.showMessageDialog(contentPane, "XÃ³a thÃ nh cÃ´ng!");
 						loadData();
 					}
 				}
