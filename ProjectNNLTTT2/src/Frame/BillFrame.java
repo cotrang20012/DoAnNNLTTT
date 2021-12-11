@@ -199,7 +199,7 @@ public class BillFrame extends JFrame {
 		ArrayList<BillModel> listBill = BillModel.viewBillForBillFrame();
 		for (BillModel bill : listBill) {
 			String[] item = { String.valueOf(bill.getIdbill()), String.valueOf(bill.getIdsale()),
-					String.valueOf(bill.getIdkhachhang()), String.valueOf(bill.getTonghoadon()) };
+					String.valueOf(bill.getIdkhachhang()), String.valueOf(bill.getTonghoadon()),bill.getDate().toString() };
 			model.addRow(item);
 		}
 		model.fireTableDataChanged();

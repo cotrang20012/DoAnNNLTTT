@@ -26,6 +26,7 @@ public class UpdateInfoEmployee extends JFrame {
 	private JTextField textPhone;
 
 	public UpdateInfoEmployee() {
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setTitle("CẬP NHẬT THÔNG TIN");
 		setBounds(100, 100, 322, 182);
 		contentPane = new JPanel();

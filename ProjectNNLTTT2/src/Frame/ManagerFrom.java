@@ -39,6 +39,7 @@ public class ManagerFrom extends JFrame {
 	private static ArrayList<NhanVien> listNV = nvDAO.getNV();
 
 	public ManagerFrom() {
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setTitle("QUẢN LÝ");
 		setBounds(100, 100, 844, 471);
 		contentPane = new JPanel();

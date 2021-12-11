@@ -75,9 +75,9 @@ public class InsertCarFrame extends JFrame {
 	 * Create the frame.
 	 */
 	public InsertCarFrame() {
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		//Initialize
 		setTitle("Nhập Thông Tin Xe");
-		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 300, 375);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -92,23 +92,23 @@ public class InsertCarFrame extends JFrame {
 		lbl_model.setBounds(10, 64, 70, 14);
 		contentPane.add(lbl_model);
 		
-		JLabel lbl_mauxe = new JLabel("M\u00E0u Xe:");
+		JLabel lbl_mauxe = new JLabel("Màu Xe:");
 		lbl_mauxe.setBounds(10, 94, 70, 14);
 		contentPane.add(lbl_mauxe);
 		
-		JLabel lbl_thuonghieu = new JLabel("Th\u01B0\u01A1ng Hi\u1EC7u:");
+		JLabel lbl_thuonghieu = new JLabel("Thương Hiệu:");
 		lbl_thuonghieu.setBounds(10, 124, 80, 14);
 		contentPane.add(lbl_thuonghieu);
 		
-		JLabel lbl_loai = new JLabel("Lo\u1EA1i Xe:");
+		JLabel lbl_loai = new JLabel("Loại Xe:");
 		lbl_loai.setBounds(10, 154, 70, 14);
 		contentPane.add(lbl_loai);
 		
-		JLabel lbl_phankhoi = new JLabel("Ph\u00E2n Kh\u1ED1i:");
+		JLabel lbl_phankhoi = new JLabel("Phân Khối:");
 		lbl_phankhoi.setBounds(10, 184, 70, 14);
 		contentPane.add(lbl_phankhoi);
 		
-		JLabel lbl_gia = new JLabel("Gi\u00E1 Xe:");
+		JLabel lbl_gia = new JLabel("Giá Xe:");
 		lbl_gia.setBounds(10, 214, 70, 14);
 		contentPane.add(lbl_gia);
 		
@@ -142,12 +142,12 @@ public class InsertCarFrame extends JFrame {
 		contentPane.add(txt_gia);
 		txt_gia.setColumns(10);
 		
-		JButton btnAdd = new JButton("TH\u00CAM");
+		JButton btnAdd = new JButton("THÊM");
 		btnAdd.setFont(new Font("Tahoma", Font.BOLD, 13));
 		btnAdd.setBounds(30, 283, 80, 42);
 		contentPane.add(btnAdd);
 		
-		JButton btnClear = new JButton("H\u1EE6Y");
+		JButton btnClear = new JButton("HUỶ");
 		btnClear.setFont(new Font("Tahoma", Font.BOLD, 13));
 		btnClear.setBounds(175, 283, 80, 42);
 		contentPane.add(btnClear);
