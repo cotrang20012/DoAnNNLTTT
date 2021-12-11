@@ -50,6 +50,7 @@ public class StatisticsFrame extends JFrame {
 	 * Create the frame.
 	 */
 	public StatisticsFrame() {
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setTitle("THỐNG KÊ");
 		setBounds(100, 100, 691, 426);
 		contentPane = new JPanel();

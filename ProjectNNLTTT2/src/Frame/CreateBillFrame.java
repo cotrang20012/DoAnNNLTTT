@@ -183,7 +183,7 @@ public class CreateBillFrame extends JFrame {
 		btnExit.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				hide();
+				dispose();
 			}
 		});
 		btnExit.setBounds(678, 433, 177, 51);

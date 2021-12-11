@@ -20,14 +20,15 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import java.awt.event.ActionEvent;
+import javax.swing.JPasswordField;
 
 public class LoginFrame extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textUser;
-	private JTextField textPassword;
 	AccountDAO accDao = new AccountDAO();
 	Account acc = new Account();
+	private JPasswordField textPassword;
 
 	public LoginFrame() {
 		setTitle("ĐĂNG NHẬP");
@@ -51,12 +52,10 @@ public class LoginFrame extends JFrame {
 		textUser.setBounds(138, 39, 158, 20);
 		contentPane.add(textUser);
 		textUser.setColumns(10);
-
-		textPassword = new JTextField();
-		textPassword.setText("1");
+		
+		textPassword = new JPasswordField();
 		textPassword.setBounds(138, 75, 158, 20);
 		contentPane.add(textPassword);
-		textPassword.setColumns(10);
 
 		JRadioButton rdbtnManager = new JRadioButton("QUẢN LÝ");
 		rdbtnManager.setSelected(true);

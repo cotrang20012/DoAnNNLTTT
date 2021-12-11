@@ -161,7 +161,7 @@ public class CarModel {
 		String viewQuery = "SELECT * FROM xe WHERE trangthai = ?; ";
 		try {
 			PreparedStatement pStatement = conn.prepareStatement(viewQuery);
-			pStatement.setString(1, "CHÆ¯A BÃ�N");
+			pStatement.setString(1, "CHƯA BÁN");
 			ResultSet resultSet = pStatement.executeQuery();
 			ArrayList<CarModel> ListCar = new ArrayList<CarModel>();
 			while(resultSet.next()) {
@@ -212,10 +212,10 @@ public class CarModel {
         return null;
 	}
 	
-	public static ArrayList<CarModel> searchCar(int priceMin, int priceMax, String model, int phankhoi, String mauxe, String thuonghieu, String xuatxu, String trangthai) {
-        try {           
+	public static ArrayList<CarModel> searchCar(int priceMin, int priceMax, String model, int phankhoi, String mauxe, String thuonghieu, String xuatxu, String trangthai, String loaixe) {
+        try {
             Connection con = MyDB.getConnection();
-            String searchQuery = "CALL SEARCHCAR(?,?,?,?,?,?,?,?)";
+            String searchQuery = "CALL SEARCHCAR(?,?,?,?,?,?,?,?,?)";
             PreparedStatement stmt = con.prepareStatement(searchQuery);
             stmt.setInt(1, priceMin);
             stmt.setInt(2, priceMax);
@@ -225,19 +225,20 @@ public class CarModel {
             stmt.setString(6, thuonghieu);
             stmt.setString(7, xuatxu);
             stmt.setString(8, trangthai);
+            stmt.setString(9, loaixe);
             ArrayList<CarModel> lst = new ArrayList<CarModel>();
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
-            	CarModel car = new CarModel();
-				car.setId(rs.getInt("id"));
-				car.setModelXe(rs.getString("model"));
-				car.setMauXe(rs.getString("mauxe"));
-				car.setLoai(rs.getString("loai"));
-				car.setPhanKhoi(rs.getInt("phankhoi"));
-				car.setXuatXu(rs.getString("xuatxu"));
-				car.setTrangThai(rs.getString("trangthai"));
-				car.setGiaXe(rs.getInt("gia"));
-				car.setThuongHieu(rs.getString("thuonghieu"));
+                CarModel car = new CarModel();
+                car.setId(rs.getInt("id"));
+                car.setModelXe(rs.getString("model"));
+                car.setMauXe(rs.getString("mauxe"));
+                car.setLoai(rs.getString("loai"));
+                car.setPhanKhoi(rs.getInt("phankhoi"));
+                car.setXuatXu(rs.getString("xuatxu"));
+                car.setTrangThai(rs.getString("trangthai"));
+                car.setGiaXe(rs.getInt("gia"));
+                car.setThuongHieu(rs.getString("thuonghieu"));
                 lst.add(car);
             }
             MyDB.closeConnection(con);
@@ -246,7 +247,7 @@ public class CarModel {
             System.out.println(e);
         }
         return null;
-	}
+    }
 	
 	public static void updateCarStatus(int carID) {
 		Connection conn = MyDB.getConnection();
@@ -254,7 +255,7 @@ public class CarModel {
 	    PreparedStatement pStatement = null;
 	    try {
 	    	pStatement =conn.prepareStatement(updateQuery);
-	    	pStatement.setString(1, "Ä�Ãƒ BÃ�N");
+	    	pStatement.setString(1, "ĐÃ BÁN");
 			pStatement.setInt(2, carID);
 				
 			pStatement.executeUpdate();
@@ -269,7 +270,7 @@ public class CarModel {
 	    PreparedStatement pStatement = null;
 	    try {
 	    	pStatement =conn.prepareStatement(updateQuery);
-	    	pStatement.setString(1, "CHÆ¯A BÃ�N");
+	    	pStatement.setString(1, "CHƯA BÁN");
 			pStatement.setInt(2, carID);
 				
 			pStatement.executeUpdate();

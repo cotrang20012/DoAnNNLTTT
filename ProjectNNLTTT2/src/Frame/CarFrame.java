@@ -129,7 +129,7 @@ public class CarFrame extends JFrame {
 	 */
 	public CarFrame() {
 		// Initialize Frame
-		setTitle("QU\u1EA2N L\u00DD XE");
+		setTitle("QUẢN LÝ XE");
 		setBounds(100, 100, 999, 471);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -295,7 +295,7 @@ public class CarFrame extends JFrame {
 		lblSearchLoaiXe.setBounds(10, 87, 46, 14);
 		panelSearch.add(lblSearchLoaiXe);
 		
-		JLabel lblSearchTrangThai = new JLabel("Thương Hiệu:");
+		JLabel lblSearchTrangThai = new JLabel("Trạng Thái:");
 		lblSearchTrangThai.setBounds(10, 120, 62, 14);
 		panelSearch.add(lblSearchTrangThai);
 		
@@ -380,8 +380,7 @@ public class CarFrame extends JFrame {
 
 		btnExit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				hide();
-			}
+				dispose();			}
 		});
 
 		btnReload.addActionListener(new ActionListener() {
@@ -502,7 +501,7 @@ public class CarFrame extends JFrame {
 				default:
 					break;
 				}
-			loadData(CarModel.searchCar(priceMin, priceMax, modelXe, phanKhoi, mauXe, thuongHieu, xuatXu, trangThai));
+			loadData(CarModel.searchCar(priceMin, priceMax, modelXe, phanKhoi, mauXe, thuongHieu, xuatXu, trangThai,loaiXe));
 			}
 		});
 	}

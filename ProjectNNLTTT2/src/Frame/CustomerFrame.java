@@ -136,6 +136,12 @@ public class CustomerFrame extends JFrame {
 		contentPane.add(btnDelete);
 		
 		btnExit = new JButton("THO\u00C1T");
+		btnExit.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				dispose();
+			}
+		});
 		btnExit.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnExit.setForeground(Color.RED);
 		btnExit.setBounds(644, 370, 126, 51);
