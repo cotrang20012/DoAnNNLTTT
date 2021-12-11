@@ -80,11 +80,11 @@ public class CustomerFrame extends JFrame {
 		model = new DefaultTableModel();
 		//set column headers
 		Vector column = new Vector();
-		column.add("ID KhÃ¡ch HÃ ng");
-		column.add("TÃªn KhÃ¡ch HÃ ng");
+		column.add("ID Khách Hàng");
+		column.add("Tên Khách Hàng");
 		column.add("CMND/CCCD");
-		column.add("Ä�á»‹a Chá»‰");
-		column.add("Sá»‘ Ä�iá»‡n Thoáº¡i");
+		column.add("Địa Chỉ");
+		column.add("Số Điện Thoại");
 		model.setColumnIdentifiers(column);
 		ArrayList<CustomerModel> list = CustomerModel.ViewCustomer();
         for (int i = 0; i < list.size(); i++) {
@@ -104,7 +104,7 @@ public class CustomerFrame extends JFrame {
 	 * Create the frame.
 	 */
 	public CustomerFrame() {
-		setTitle("QUáº¢N LÃ� KHÃ�CH HÃ€NG");
+		setTitle("QUÁN LÝ KHÁCH HÀNG");
 		setBounds(100, 100, 796, 471);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -122,15 +122,15 @@ public class CustomerFrame extends JFrame {
 		};
 		scrollPane.setViewportView(tableCustomer);
 		
-		btnAdd = new JButton("TH\u00CAM KH\u00C1CH H\u00C0NG");
+		btnAdd = new JButton("THÊM KHÁCH HÀNG");
 		btnAdd.setBounds(624, 246, 146, 51);
 		contentPane.add(btnAdd);
 		
-		btnUpdate = new JButton("S\u1EECA KH\u00C1CH H\u00C0NG");		
+		btnUpdate = new JButton("SỬA KHÁCH HÀNG");		
 		btnUpdate.setBounds(624, 308, 146, 51);
 		contentPane.add(btnUpdate);
 		
-		btnDelete = new JButton("X\u00D3A KH\u00C1CH H\u00C0NG");
+		btnDelete = new JButton("XOÁ KHÁCH HÀNG");
 		btnDelete.setForeground(Color.RED);
 		btnDelete.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnDelete.setBounds(624, 370, 146, 51);
@@ -148,7 +148,7 @@ public class CustomerFrame extends JFrame {
 		btnExit.setBounds(644, 11, 126, 51);
 		contentPane.add(btnExit);
 		
-		lbl_tenkh = new JLabel("TÃŠN KHÃ�CH HÃ€NG:");
+		lbl_tenkh = new JLabel("TÊN KHÁCH HÀNG:");
 		lbl_tenkh.setBounds(54, 73, 93, 14);
 		contentPane.add(lbl_tenkh);
 		
@@ -156,11 +156,11 @@ public class CustomerFrame extends JFrame {
 		lbl_cmndcccd.setBounds(54, 98, 93, 14);
 		contentPane.add(lbl_cmndcccd);
 		
-		lbl_diachi = new JLabel("Ä�á»ŠA CHá»ˆ:");
+		lbl_diachi = new JLabel("ĐỊA CHỈ");
 		lbl_diachi.setBounds(363, 49, 93, 14);
 		contentPane.add(lbl_diachi);
 		
-		lbl_sodienthoai = new JLabel("Sá»� Ä�Iá»†N THOáº I:");
+		lbl_sodienthoai = new JLabel("SỐ ĐIỆN THOẠI:");
 		lbl_sodienthoai.setBounds(363, 74, 93, 14);
 		contentPane.add(lbl_sodienthoai);
 		
@@ -190,7 +190,7 @@ public class CustomerFrame extends JFrame {
 		txt_id.setBounds(157, 46, 133, 20);
 		contentPane.add(txt_id);
 		
-		lbl_id = new JLabel("ID KHÃ�CH HÃ€NG:");
+		lbl_id = new JLabel("ID KHÁCH HÀNG:");
 		lbl_id.setBounds(54, 49, 93, 14);
 		contentPane.add(lbl_id);
 		
@@ -198,7 +198,7 @@ public class CustomerFrame extends JFrame {
 		btnReload.setBounds(624, 184, 146, 51);
 		contentPane.add(btnReload);
 		
-		lbl_title = new JLabel("TH\u00D4NG TIN KH\u00C1CH H\u00C0NG:");
+		lbl_title = new JLabel("THÔNG TIN KHÁCH HÀNG:");
 		lbl_title.setBounds(10, 11, 133, 14);
 		contentPane.add(lbl_title);
 		loadData();

@@ -98,13 +98,13 @@ public class CarFrame extends JFrame {
 		Vector column = new Vector();
 		column.add("ID Xe");
 		column.add("Model Xe");
-		column.add("Máº«u Xe");
-		column.add("ThÆ°Æ¡ng Hiá»‡u");
-		column.add("Loáº¡i");
-		column.add("PhÃ¢n KhÃºc");
-		column.add("Xuáº¥t Xá»©");
-		column.add("Tráº¡ng ThÃ¡i");
-		column.add("GiÃ¡ Xe");
+		column.add("Máu Xe");
+		column.add("Thương Hiệu");
+		column.add("Loại");
+		column.add("Phân Khúc");
+		column.add("Xuất Xứ");
+		column.add("Trạng Thái");
+		column.add("Giá Xe");
 		model.setColumnIdentifiers(column);
 		ArrayList<CarModel> list = lst;
 		for (int i = 0; i < list.size(); i++) {
@@ -129,7 +129,7 @@ public class CarFrame extends JFrame {
 	 */
 	public CarFrame() {
 		// Initialize Frame
-		setTitle("QUáº¢N LÃ� XE");
+		setTitle("QUẢN LÝ XE");
 		setBounds(100, 100, 999, 471);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -137,15 +137,15 @@ public class CarFrame extends JFrame {
 		contentPane.setLayout(null);
 
 		// Initialize button
-		JButton btnAdd = new JButton("THÃŠM XE");
+		JButton btnAdd = new JButton("THÊM XE");
 		btnAdd.setBounds(847, 247, 126, 51);
 		contentPane.add(btnAdd);
 
-		JButton btnUpdate = new JButton("Sá»¬A XE");
+		JButton btnUpdate = new JButton("SỬA XE");
 		btnUpdate.setBounds(847, 309, 126, 51);
 		contentPane.add(btnUpdate);
 
-		JButton btnDelete = new JButton("XOÃ� XE");
+		JButton btnDelete = new JButton("XOÁ XE");
 		btnDelete.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnDelete.setForeground(Color.RED);
 		btnDelete.setBounds(847, 370, 126, 51);
@@ -163,7 +163,7 @@ public class CarFrame extends JFrame {
 		};
 		scrollPane.setViewportView(tableCar);
 
-		JLabel lbl_xuatxu = new JLabel("Xuáº¥t Xá»©:");
+		JLabel lbl_xuatxu = new JLabel("Xuất Xứ:");
 		lbl_xuatxu.setBounds(236, 67, 54, 14);
 		contentPane.add(lbl_xuatxu);
 
@@ -171,27 +171,27 @@ public class CarFrame extends JFrame {
 		lbl_model.setBounds(236, 97, 70, 14);
 		contentPane.add(lbl_model);
 
-		JLabel lbl_mauxe = new JLabel("Máº«u Xe:");
+		JLabel lbl_mauxe = new JLabel("Mẫu Xe:");
 		lbl_mauxe.setBounds(236, 127, 70, 14);
 		contentPane.add(lbl_mauxe);
 
-		JLabel lbl_thuonghieu = new JLabel("ThÆ°Æ¡ng Hiá»‡u:");
+		JLabel lbl_thuonghieu = new JLabel("Thương Hiệu:");
 		lbl_thuonghieu.setBounds(236, 157, 80, 14);
 		contentPane.add(lbl_thuonghieu);
 
-		JLabel lbl_loai = new JLabel("Loáº¡i Xe:");
+		JLabel lbl_loai = new JLabel("Loại Xe:");
 		lbl_loai.setBounds(565, 34, 70, 14);
 		contentPane.add(lbl_loai);
 
-		JLabel lbl_phankhoi = new JLabel("PhÃ¢n Khá»‘i:");
+		JLabel lbl_phankhoi = new JLabel("Phân Khối:");
 		lbl_phankhoi.setBounds(565, 64, 70, 14);
 		contentPane.add(lbl_phankhoi);
 
-		JLabel lbl_trangthai = new JLabel("Tráº¡ng ThÃ¡i:");
+		JLabel lbl_trangthai = new JLabel("Trạng Thái:");
 		lbl_trangthai.setBounds(565, 94, 70, 14);
 		contentPane.add(lbl_trangthai);
 
-		JLabel lbl_gia = new JLabel("GiÃ¡ Xe:");
+		JLabel lbl_gia = new JLabel("Giải Xe:");
 		lbl_gia.setBounds(565, 124, 70, 14);
 		contentPane.add(lbl_gia);
 
@@ -235,7 +235,7 @@ public class CarFrame extends JFrame {
 		txt_gia.setBounds(645, 121, 170, 20);
 		contentPane.add(txt_gia);
 
-		JButton btnExit = new JButton("THOÃ�T");
+		JButton btnExit = new JButton("THOÁT");
 		btnExit.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnExit.setForeground(Color.RED);
 		btnExit.setBounds(847, 11, 126, 51);
@@ -265,22 +265,22 @@ public class CarFrame extends JFrame {
 		panelSearch.add(txt_searchInfo);
 		txt_searchInfo.setColumns(10);
 		
-		JLabel lblSearchTitle = new JLabel("TÃ¬m kiáº¿m thÃ´ng tin xe");
+		JLabel lblSearchTitle = new JLabel("Tìm kiếm thông tin xe");
 		lblSearchTitle.setBounds(10, 11, 126, 14);
 		panelSearch.add(lblSearchTitle);
 		
-		String[] category = {"XUáº¤T Xá»¨", "MODEL XE", "MÃ€U XE", "THÆ¯Æ NG HIá»†U"};
+		String[] category = {"XUẤT XỨ¨", "MODEL XE", "MÀU XE", "THƯƠNG HIỆU"};
 		JComboBox cb_searchCategory = new JComboBox(category);
 		cb_searchCategory.setBounds(10, 51, 62, 22);
 		panelSearch.add(cb_searchCategory);
 		
-		String[] loai = {"Táº¤T Cáº¢", "XE 2 BÃ�NH", "XE 4 BÃ�NH" };
+		String[] loai = {"TẤT CẢ", "XE 2 BÁNH", "XE 4 BÁNH" };
 		JComboBox cb_searchLoaiXe = new JComboBox(loai);
 		cb_searchLoaiXe.setBounds(75, 83, 106, 22);
 		panelSearch.add(cb_searchLoaiXe);
 		cb_searchLoaiXe.setSelectedIndex(0);
 		
-		String[] tt = {"Táº¤T Cáº¢", "Ä�Ãƒ BÃ�N", "CHÆ¯A BÃ�N"};
+		String[] tt = {"TẤT CẢ", "XE 2 BÁNH", "XE 4 BÁNH"};
 		JComboBox cb_searchTrangThai = new JComboBox(tt);
 		cb_searchTrangThai.setBounds(75, 116, 106, 22);
 		panelSearch.add(cb_searchTrangThai);
@@ -291,15 +291,15 @@ public class CarFrame extends JFrame {
 		txt_GiaXeMax.setBounds(121, 189, 60, 20);
 		panelSearch.add(txt_GiaXeMax);
 		
-		JLabel lblSearchLoaiXe = new JLabel("Loáº¡i Xe:");
+		JLabel lblSearchLoaiXe = new JLabel("Loại Xe:");
 		lblSearchLoaiXe.setBounds(10, 87, 46, 14);
 		panelSearch.add(lblSearchLoaiXe);
 		
-		JLabel lblSearchTrangThai = new JLabel("Tráº¡ng ThÃ¡i:");
+		JLabel lblSearchTrangThai = new JLabel("Trạng Thái");
 		lblSearchTrangThai.setBounds(10, 120, 62, 14);
 		panelSearch.add(lblSearchTrangThai);
 		
-		JLabel lblSearchGiaXe = new JLabel("Khoáº£n GiÃ¡ Xe:");
+		JLabel lblSearchGiaXe = new JLabel("Khoản Giá Xe:");
 		lblSearchGiaXe.setBounds(10, 154, 99, 14);
 		panelSearch.add(lblSearchGiaXe);
 		
@@ -317,11 +317,11 @@ public class CarFrame extends JFrame {
 		txt_searchPhanKhoi.setBounds(75, 233, 106, 20);
 		panelSearch.add(txt_searchPhanKhoi);
 		
-		JLabel lblSearchPhanKhoi = new JLabel("PhÃ¢n khá»‘i:");
+		JLabel lblSearchPhanKhoi = new JLabel("Phân Khối:");
 		lblSearchPhanKhoi.setBounds(10, 236, 62, 14);
 		panelSearch.add(lblSearchPhanKhoi);
 		
-		JButton btnSearch = new JButton("TÃŒM KIáº¾M");
+		JButton btnSearch = new JButton("TÌM KIẾM");
 		btnSearch.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnSearch.setBounds(32, 336, 126, 51);
 		panelSearch.add(btnSearch);
@@ -347,7 +347,7 @@ public class CarFrame extends JFrame {
 		btnUpdate.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (txt_id.getText().equals("")) {
-					JOptionPane.showMessageDialog(contentPane, "Vui lÃ²ng chá»�n xe trÆ°á»›c khi cáº­p nháº­t");
+					JOptionPane.showMessageDialog(contentPane, "Vui lòng chọn xe!!");
 				} else {
 					if(txt_gia.getText().equals("")|| txt_phankhoi.getText().equals("")|| txt_loai.getText().equals("")|| txt_mauxe.getText().equals("")|| txt_model.getText().equals("")|| txt_thuonghieu.getText().equals("")|| txt_trangthai.getText().equals("")||txt_xuatxu.getText().equals("")) {
 						
@@ -355,7 +355,7 @@ public class CarFrame extends JFrame {
 					else {
 						CarModel car = getCar();
 						CarModel.updateCar(car);
-						JOptionPane.showMessageDialog(contentPane, "Cáº­p Nháº­t ThÃ nh CÃ´ng");
+						JOptionPane.showMessageDialog(contentPane, "Cập nhật thành công");
 						loadData(CarModel.viewAllCar());
 					}
 				}
@@ -365,17 +365,17 @@ public class CarFrame extends JFrame {
 		btnDelete.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (txt_id.getText().equals("")) {
-					JOptionPane.showMessageDialog(contentPane, "Vui lÃ²ng chá»�n xe trÆ°á»›c khi xoÃ¡!");
+					JOptionPane.showMessageDialog(contentPane, "Vui lòng chọn xe trước khi xoá!!!");
 				} else {
-					int delConfirmed = JOptionPane.showConfirmDialog(null, "Báº¡n cÃ³ cháº¯c xoÃ¡ xe nÃ y ?!!");
+					int delConfirmed = JOptionPane.showConfirmDialog(null, "Bạn có chắc xoá xe này ?!!");
 					if (delConfirmed == 0) {
 						CarModel car = getCar();
 						if (CarModel.deleteCar(car)) {
-							JOptionPane.showMessageDialog(contentPane, "XoÃ¡ ThÃ nh CÃ´ng");
+							JOptionPane.showMessageDialog(contentPane, "Xoá Thành Công!!");
 							loadData(CarModel.viewAllCar());
 						}
 						else {
-							JOptionPane.showMessageDialog(contentPane, "XoÃ¡ KhÃ´ng ThÃ nh CÃ´ng!!");
+							JOptionPane.showMessageDialog(contentPane, "Xoá Không Thành Công!!!");
 						}
 					}
 				}
@@ -478,11 +478,11 @@ public class CarFrame extends JFrame {
 					break;
 				
 				case 1:
-					loaiXe = "XE 2 BÃ�NH";
+					loaiXe = "XE 2 BÁNH";
 					break;
 					
 				case 2:
-					loaiXe = "XE 4 BÃ�NH";
+					loaiXe = "XE 4 BÁNH";
 					break;
 					
 				default:
@@ -495,11 +495,11 @@ public class CarFrame extends JFrame {
 					break;
 				
 				case 1:
-					trangThai = "Ä�Ãƒ BÃ�N";
+					trangThai = "ĐÃ BÁN";
 					break;
 					
 				case 2:
-					trangThai = "CHÆ¯A BÃ�N";
+					trangThai = "CHƯA BÁN";
 					break;
 					
 				default:
