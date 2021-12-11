@@ -33,7 +33,6 @@ public class MainFrame extends JFrame {
 	private static NhanVien nv;
 	
 	public MainFrame() {
-		Global.nv =  nvDAO.getNhanVien(Global.acc.getUsername());
 		setTitle("QUẢN LÝ CỬA HÀNG");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 907, 472);
@@ -67,7 +66,7 @@ public class MainFrame extends JFrame {
 		});
 		btnManager.setBounds(10, 11, 115, 47);
 		contentPane.add(btnManager);
-		if (Global.acc.getUsertype() == "SALES") btnManager.setEnabled(false);
+		if (Global.nv.getChucvu() == "SALES") btnManager.setEnabled(false);
 		
 		JButton btnCar = new JButton("DANH SÁCH XE");
 		btnCar.addMouseListener(new MouseAdapter() {
@@ -151,8 +150,8 @@ public class MainFrame extends JFrame {
 				EventQueue.invokeLater(new Runnable() {
 					public void run() {
 						try {
-							ChangePasswordFrame frame = new ChangePasswordFrame();
-							frame.setVisible(true);
+//							ChangePasswordFrame frame = new ChangePasswordFrame();
+//							frame.setVisible(true);
 						} catch (Exception e) {
 							e.printStackTrace();
 						}
@@ -212,7 +211,7 @@ public class MainFrame extends JFrame {
 		btnStatistics.setBounds(727, 244, 137, 47);
 		contentPane.add(btnStatistics);
 		loadData();
-		if(Global.acc.getUsertype().equals("SALES")) {
+		if(Global.nv.getChucvu().equals("SALES")) {
 			btnManager.setEnabled(false);	
 		}
 	}

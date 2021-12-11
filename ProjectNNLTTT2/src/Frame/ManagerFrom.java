@@ -138,7 +138,7 @@ public class ManagerFrom extends JFrame {
 		for (int i = 0; i < columnNV.length; i++)
 			dtmNV.addColumn(columnNV[i]);
 		for (NhanVien nv : listNV) {
-			Object data[] = new Object[7];
+			Object data[] = new Object[8];
 			int i = 0;
 			data[i++] = nv.getId();
 			data[i++] = nv.getCmnd();

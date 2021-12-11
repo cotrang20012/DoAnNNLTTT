@@ -217,17 +217,17 @@ public class CustomerFrame extends JFrame {
 		btnUpdate.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(txt_id.getText().equals("")){
-					JOptionPane.showMessageDialog(contentPane, "Vui lÃ²ng chá»�n KH Ä‘á»ƒ cáº­p nháº­t!");	
+					JOptionPane.showMessageDialog(contentPane, "Vui lòng chọn khách hàng!");	
 				}
 				else {
 					if(txt_id.getText().equals("") || txt_name.getText().equals("") || txt_cmnd.getText().equals("") || txt_addr.getText().equals("") || txt_phone.getText().equals("")) {
-						JOptionPane.showMessageDialog(contentPane, "Vui lÃ²ng Ä‘iá»�n Ä‘áº§y Ä‘á»§ thÃ´ng tin!");
+						JOptionPane.showMessageDialog(contentPane, "Vui lòng");
 						loadData();
 					}
 					else {
 						CustomerModel cust = getCust();
 						CustomerModel.updateCust(cust);
-						JOptionPane.showMessageDialog(contentPane, "Cáº­p nháº­t thÃ nh cÃ´ng!");
+						JOptionPane.showMessageDialog(contentPane, "Cập nhật thành công!!");
 						loadData();
 					}
 				}	
@@ -237,14 +237,14 @@ public class CustomerFrame extends JFrame {
 		btnDelete.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(txt_id.getText().equals("")) {
-					JOptionPane.showMessageDialog(contentPane, "Vui lÃ²ng chá»�n KH Ä‘á»ƒ xÃ³a!");	
+					JOptionPane.showMessageDialog(contentPane, "Vui lòng chọn khách hàng!");	
 				}
 				else {
-					int delConfirmed = JOptionPane.showConfirmDialog(null, "Báº¡n cÃ³ cháº¯c cháº¯n muá»‘n xÃ³a khÃ´ng?");
+					int delConfirmed = JOptionPane.showConfirmDialog(null, "Bạn chắc chắn muốn xoá khách hàng ?!");
 					if (delConfirmed == 0) {
 						CustomerModel cust = getCust();
 						CustomerModel.deleteCust(cust);
-						JOptionPane.showMessageDialog(contentPane, "XÃ³a thÃ nh cÃ´ng!");
+						JOptionPane.showMessageDialog(contentPane, "Xoá thành công!");
 						loadData();
 					}
 				}
@@ -274,7 +274,7 @@ public class CustomerFrame extends JFrame {
 			       txt_phone.setText(model.getValueAt(selectedRowIndex, 4).toString());			       
 			}
 		});
-		if(Global.acc.getUsertype().equals("SALES")) {
+		if(Global.nv.getChucvu().equals("SALES")) {
 			btnUpdate.setEnabled(false);
 			btnDelete.setEnabled(false);
 		}

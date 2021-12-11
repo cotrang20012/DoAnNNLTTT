@@ -8,7 +8,6 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import database.NhanvienDAO;
-import model.Account;
 import model.Global;
 import model.NhanVien;
 

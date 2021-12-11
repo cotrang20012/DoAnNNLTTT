@@ -177,7 +177,7 @@ public class BillFrame extends JFrame {
 		});
 		btnRefresh.setBounds(510, 11, 126, 51);
 		contentPane.add(btnRefresh);
-		if(Global.acc.getUsertype().equals("SALES")) {
+		if(Global.nv.getChucvu().equals("SALES")) {
 			btnDelete.setEnabled(false);
 		}
 		TinhTongHoaDon(lblNewLabel);

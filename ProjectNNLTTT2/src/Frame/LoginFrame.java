@@ -88,8 +88,6 @@ public class LoginFrame extends JFrame {
 					JOptionPane.showMessageDialog(null, "Username hoặc password còn trống", "Warning",
 							JOptionPane.INFORMATION_MESSAGE);
 				else {
-					System.out.println(textUser.getText().trim());
-					System.out.println(textPassword.getText().trim());
 					nv.setCmnd(textUser.getText().trim());
 					nv.setPassword(textPassword.getText().trim());
 					if (rdbtnManager.isSelected() == true)
@@ -98,7 +96,6 @@ public class LoginFrame extends JFrame {
 						nv.setChucvu("SALES");
 					try {
 						nv = nhanvienDAO.checkLogin(nv);
-						System.out.print(nv);
 						if (nv != null) {
 							Global.nv = nv;
 								EventQueue.invokeLater(new Runnable() {
