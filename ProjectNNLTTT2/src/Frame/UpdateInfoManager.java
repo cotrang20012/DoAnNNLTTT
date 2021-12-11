@@ -93,10 +93,6 @@ public class UpdateInfoManager extends JFrame {
 		bg.add(rdbtnManager);
 		bg.add(rdbtnSales);
 		
-		textTen.setText(nv.getTen());
-		textDiachi.setText(nv.getDiachi());
-		textSDT.setText(nv.getSdt());
-		textLuong.setText(String.valueOf(nv.getLuong()));
 		
 		JLabel lblNewLabel_3_1 = new JLabel("CMND/CCCD");
 		lblNewLabel_3_1.setFont(new Font("Tahoma", Font.PLAIN, 13));
@@ -115,6 +111,14 @@ public class UpdateInfoManager extends JFrame {
 		JTextPane textPwd = new JTextPane();
 		textPwd.setBounds(89, 202, 172, 20);
 		contentPane.add(textPwd);
+		
+		textTen.setText(nv.getTen());
+		textDiachi.setText(nv.getDiachi());
+		textSDT.setText(nv.getSdt());
+		textLuong.setText(String.valueOf(nv.getLuong()));
+		textCMND.setText(nv.getCmnd());
+		textPwd.setText(nv.getPassword());
+	
 		if (nv.getChucvu().equals("QUANLY")) rdbtnManager.setSelected(true);
 		else rdbtnSales.setSelected(true);
 		

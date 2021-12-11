@@ -150,8 +150,8 @@ public class MainFrame extends JFrame {
 				EventQueue.invokeLater(new Runnable() {
 					public void run() {
 						try {
-//							ChangePasswordFrame frame = new ChangePasswordFrame();
-//							frame.setVisible(true);
+							ChangePasswordFrame frame = new ChangePasswordFrame();
+							frame.setVisible(true);
 						} catch (Exception e) {
 							e.printStackTrace();
 						}

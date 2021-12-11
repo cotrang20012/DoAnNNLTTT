@@ -29,7 +29,6 @@ public class LoginFrame extends JFrame {
 	private JPanel contentPane;
 	private JTextField textUser;
 	NhanvienDAO nhanvienDAO = new NhanvienDAO();
-	NhanVien nv = new NhanVien(); 
 	private JPasswordField textPassword;
 
 	public LoginFrame() {
@@ -84,12 +83,13 @@ public class LoginFrame extends JFrame {
 		JButton btnLogin = new JButton("ĐĂNG NHẬP");
 		btnLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (textUser.getText().trim().length() == 0 || textPassword.getText().trim().length() == 0)
+				if (textUser.getText().length() == 0 || textPassword.getText().length() == 0)
 					JOptionPane.showMessageDialog(null, "Username hoặc password còn trống", "Warning",
 							JOptionPane.INFORMATION_MESSAGE);
 				else {
-					nv.setCmnd(textUser.getText().trim());
-					nv.setPassword(textPassword.getText().trim());
+					NhanVien nv = new NhanVien();
+					nv.setCmnd(textUser.getText());
+					nv.setPassword(textPassword.getText());
 					if (rdbtnManager.isSelected() == true)
 						nv.setChucvu("QUANLY");
 					else

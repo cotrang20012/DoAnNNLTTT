@@ -78,7 +78,6 @@ public class ManagerFrom extends JFrame {
 		btnUpdateEmployee.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int row = tableEmployee.getSelectedRow();
-				System.out.println(row);
 				EventQueue.invokeLater(new Runnable() {
 					public void run() {
 						try {
@@ -101,7 +100,6 @@ public class ManagerFrom extends JFrame {
 		btnDeleteEmployee.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int row =  tableEmployee.getSelectedRow();
-				System.out.println(row != -1);
 				if(row != -1) {
 					NhanVien nv = listNV.get(tableEmployee.getSelectedRow());
 					int dialogResult = JOptionPane.showConfirmDialog(null, "Bạn có chắc muốn xóa nhân viên này ?");
@@ -122,6 +120,11 @@ public class ManagerFrom extends JFrame {
 		contentPane.add(btnDeleteEmployee);
 		
 		JButton btnClose = new JButton("Thoát");
+		btnClose.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+			}
+		});
 		btnClose.setFont(new Font("Tahoma", Font.BOLD, 15));
 		btnClose.setBackground(Color.CYAN);
 		btnClose.setForeground(Color.RED);

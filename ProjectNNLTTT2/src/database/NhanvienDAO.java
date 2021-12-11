@@ -164,7 +164,8 @@ public class NhanvienDAO {
 			stmt.setString(2, nv.getPassword());
 			stmt.setString(3, nv.getChucvu());
 			ResultSet rs = stmt.executeQuery();
-			while (rs.next()) {
+			nv = new NhanVien();
+			if (rs.next()) {
 				nv.setId(rs.getInt("id"));
 				nv.setCmnd(rs.getString("cmnd"));
 				nv.setTen(rs.getString("ten"));
@@ -173,10 +174,11 @@ public class NhanvienDAO {
 				nv.setSdt(rs.getString("sdt"));
 				nv.setLuong(rs.getInt("luong"));
 				nv.setPassword(rs.getString("password"));
-				break;
+				conn.close();
+				return nv;
 			}
-			conn.close();
-			return nv;
+			else return null;
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 			conn.close();
